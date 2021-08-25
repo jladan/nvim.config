@@ -46,6 +46,10 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
+" Actually super cool
+Plug 'mbbill/undotree'
 
 Plug 'tpope/vim-fugitive'
 call plug#end()
@@ -167,6 +171,8 @@ EOF
 " Some keymaps
 " ------------
 
+let mapleader = " "
+
 " navigation through quickfix (actually loclist)
 nnoremap <silent> ]e :lbelow<CR>
 nnoremap <silent> ]E :labove<CR>
@@ -185,3 +191,13 @@ nnoremap <silent> ]u :cn<cr>
 nnoremap <silent> ]e :bn<cr>
 nnoremap <silent> ]. :bp<cr>
 noremap ]<space> :b<space>
+
+"" The following from ThePrimeagen
+" Improved copying
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>Y gg"+yG
+
+nnoremap <leader>u :UndotreeToggle<CR>
+
+
