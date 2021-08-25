@@ -200,4 +200,13 @@ nnoremap <leader>Y gg"+yG
 
 nnoremap <leader>u :UndotreeToggle<CR>
 
+" undo break points
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
 
+" Moving text
+" The `=` takes care of indenting
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+nnoremap <leader>j :m .+1<CR>==
+nnoremap <leader>k :m .-2<CR>==
