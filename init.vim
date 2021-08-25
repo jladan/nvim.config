@@ -54,6 +54,7 @@ call plug#end()
 set guicursor=
 highlight Normal guibg=none
 set colorcolumn=80
+hi ColorColumn guibg=#2e2e2e ctermbg=237
 set signcolumn=yes
 
 " Fancy status line {{{
