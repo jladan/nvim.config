@@ -1,0 +1,19 @@
+Telescope
+=========
+
+Set up telescope functions with the <leader>t lead-in
+- h : help
+- e : edit
+- s : split
+
+
+Git workflow
+------------
+
+I find that staging through status is cludgy, especially when there are a lot of
+untracked files in my worktree. Instead, I have started to do:
+
+:Git add %
+:Git commit -m "message"
+
+Some shortcut sequences for those could be very useful
