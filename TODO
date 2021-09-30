@@ -2,9 +2,8 @@ Telescope
 =========
 
 Set up telescope functions with the <leader>t lead-in
-- h : help
-- e : edit
-- s : split
+- s : grep search
+- add hotkey to open in split or tab (maybe shift-enter)
 
 
 Git workflow

@@ -120,6 +120,7 @@ let g:netrw_altv=1          " split to right (when 'v' is pressed)
 " Trying out lsp with python
 lua << EOF
 require "jladan.lsp"
+require "jladan.telescope"
 EOF
 
 

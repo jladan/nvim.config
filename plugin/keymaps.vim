@@ -1,3 +1,5 @@
+" Quit without saving (but not if there are changes)
+nnoremap <silent> ZH :q<CR>
 " navigation through quickfix (actually loclist)
 nnoremap <silent> ]e :lbelow<CR>
 nnoremap <silent> ]E :labove<CR>
