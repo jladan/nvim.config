@@ -2,6 +2,8 @@ if &shell =~# 'fish$'
   set shell=/usr/bin/env\ bash
 endif
 
+let mapleader = " "
+
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
@@ -31,7 +33,7 @@ set splitbelow
 " primeagen suggestions
 set noswapfile
 set nobackup
-set undodir=~/.nvim/undodir
+let &undodir = stdpath('data') . '/undodir'
 set undofile
 
 " Searching options
@@ -62,6 +64,7 @@ hi ColorColumn guibg=#2e2e2e ctermbg=237
 set signcolumn=yes
 
 " Fancy status line {{{
+" TODO fix the colors
 function! MyStatusLine(mode)
     let statusline=""
     if a:mode == 'Enter'
@@ -116,97 +119,12 @@ let g:netrw_altv=1          " split to right (when 'v' is pressed)
 
 " Trying out lsp with python
 lua << EOF
-require'lspconfig'.pyright.setup{}
+require "jladan.lsp"
 EOF
 
-lua << EOF
-local nvim_lsp = require('lspconfig')
-
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-  --Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
-
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
-end
-
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer', 'tsserver' }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    }
-  }
-end
-EOF
-
-" Some keymaps
-" ------------
-
-let mapleader = " "
-
-" navigation through quickfix (actually loclist)
-nnoremap <silent> ]e :lbelow<CR>
-nnoremap <silent> ]E :labove<CR>
-
-" Underlining commands for comments and markdown
-nnoremap <leader>u yypVr
-inoremap <expr> <C-h>u "\<esc>yypVr" . nr2char(getchar()) . "o"
-
-" To help with code refactoring, search through all files for current word
-nnoremap <silent> <leader>r :vimgrep <cword> **/*.py<cr>:cope<cr><C-W>p
-" Navigate the quickfix list
-nnoremap <silent> ]U :cp<cr>
-nnoremap <silent> ]u :cn<cr>
-
-" buffer navigation
-nnoremap <silent> ]e :bn<cr>
-nnoremap <silent> ]. :bp<cr>
-noremap ]<space> :b<space>
-
-"" The following from ThePrimeagen
-" Improved copying
-nnoremap <leader>y "+y
-vnoremap <leader>y "+y
-nnoremap <leader>Y gg"+yG
 
 nnoremap <leader>u :UndotreeToggle<CR>
 
 " undo break points
 inoremap , ,<c-g>u
 inoremap . .<c-g>u
-
-" Moving text
-" The `=` takes care of indenting
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-nnoremap <leader>j :m .+1<CR>==
-nnoremap <leader>k :m .-2<CR>==
