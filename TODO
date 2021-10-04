@@ -5,6 +5,14 @@ Set up telescope functions with the <leader>t lead-in
 - s : grep search
 - add hotkey to open in split or tab (maybe shift-enter)
 
+Diary
+=====
+
+I want to set up a nice diary flow. This would include:
+
+Telescope picker to find/select files in the $diary directory
+Shell script/alias to quickly create/edit a diary file
+
 
 Git workflow
 ------------

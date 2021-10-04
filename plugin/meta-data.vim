@@ -18,5 +18,5 @@ nnoremap <leader>t "=strftime('%T')<CR>
 inoremap <C-h>t <C-R>=strftime('%T')<CR>
 
 " Author (a)
-nnoremap <leader>a "=echo 'John Ladan'<CR>
+nnoremap <leader>a "='John Ladan'<CR>
 inoremap <C-h>a John Ladan
