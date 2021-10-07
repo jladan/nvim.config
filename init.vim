@@ -42,20 +42,6 @@ set ignorecase
 set smartcase
 set nohlsearch
 
-call plug#begin(stdpath('data') . '/plugged')
-Plug 'neovim/nvim-lspconfig'
-
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
-
-" Actually super cool
-Plug 'mbbill/undotree'
-
-Plug 'tpope/vim-fugitive'
-call plug#end()
-
 " appearance stuff
 set guicursor=
 highlight Normal guibg=none
@@ -63,6 +49,7 @@ set colorcolumn=80
 hi ColorColumn guibg=#2e2e2e ctermbg=237
 set signcolumn=yes
 
+let g:warn_root = 0
 " Fancy status line {{{
 " TODO fix the colors
 function! MyStatusLine(mode)
@@ -72,6 +59,9 @@ function! MyStatusLine(mode)
     else
         let statusline.="%0*"
     endif
+    if g:warn_root
+        let statusline.="ROOT"
+    end
     let statusline.="\(%n\)\ %f\ "
     let statusline.="%2*%m"
     let statusline.="%r%*"
@@ -105,6 +95,27 @@ set path+=**
 " ignore files
 set wildignore+=*.pyc
 set wildignore+=**/.git/*
+
+" The rest of the stuff should not execute for root user
+if system('whoami') =~ 'root'
+    let g:warn_root = 1
+    finish
+end
+
+call plug#begin(stdpath('data') . '/plugged')
+Plug 'neovim/nvim-lspconfig'
+
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
+" Actually super cool
+Plug 'mbbill/undotree'
+
+Plug 'tpope/vim-fugitive'
+call plug#end()
+
 
 let g:tex_flavor = "latex"
 
