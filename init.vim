@@ -113,7 +113,11 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 " Actually super cool
 Plug 'mbbill/undotree'
 
+" Git in vim
 Plug 'tpope/vim-fugitive'
+
+" Treesitter does parses languages
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 
