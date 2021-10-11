@@ -2,8 +2,16 @@ Telescope
 =========
 
 Set up telescope functions with the <leader>t lead-in
-- s : grep search
-- add hotkey to open in split or tab (maybe <C-v>, <C-h>, <C-t> )
+- [ ] s : grep search
+- [ ] add hotkey to open in split or tab (maybe <C-v>, <C-h>, <C-t> )
+    - this seems to be done already, with these keys
+- [ ] allow file creation from the find_files builtin
+
+LSP
+===
+
+- [ ] figure out why lua doesn't work right
+- [ ] add hotkeys for some of the telescope lsp builtins
 
 Diary
 =====
@@ -12,7 +20,12 @@ I want to set up a nice diary flow. This would include:
 
 - [x] Telescope picker to find/select files in the $diary directory
 - [ ] Shell script/alias to quickly create/edit a diary file
+- [ ] Markdown folding (via tree-sitter?)
 
+Color
+=====
+
+Probably simplify my colorscheme file. It feels too gargantuan to manage.
 
 Git workflow
 ------------

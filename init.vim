@@ -4,6 +4,9 @@ endif
 
 let mapleader = " "
 
+colorscheme jladan
+call togglebg#map("<F4>")
+
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
