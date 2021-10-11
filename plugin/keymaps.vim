@@ -5,8 +5,8 @@ nnoremap <silent> ]e :lbelow<CR>
 nnoremap <silent> ]E :labove<CR>
 
 " Underlining commands for comments and markdown
-nnoremap <leader>u yypVr
-inoremap <expr> <C-h>u "\<esc>yypVr" . nr2char(getchar()) . "o"
+nnoremap <leader>u :t .<CR>Vr
+inoremap <expr> <C-h>u "\<esc>:t .<CR>Vr" . getcharstr() . "o"
 
 " To help with code refactoring, search through all files for current word
 nnoremap <silent> <leader>r :vimgrep <cword> **/*.py<cr>:cope<cr><C-W>p

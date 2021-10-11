@@ -18,8 +18,8 @@ Diary
 
 I want to set up a nice diary flow. This would include:
 
-- [x] Telescope picker to find/select files in the $diary directory
-- [ ] Shell script/alias to quickly create/edit a diary file
+- [X] Telescope picker to find/select files in the $diary directory
+- [X] Shell script/alias to quickly create/edit a diary file
 - [ ] Markdown folding (via tree-sitter?)
 
 Color
