@@ -125,6 +125,8 @@ Plug 'tpope/vim-fugitive'
 
 " Treesitter does parses languages
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 call plug#end()
 
 
@@ -138,11 +140,27 @@ let g:netrw_winsize=70
 let g:netrw_altv=1          " split to right (when 'v' is pressed)
 " }}}
 
-
-" Trying out lsp with python
+" My lua configurations for plugins
 lua << EOF
 require "jladan.lsp"
 require "jladan.telescope"
+
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.markdown = {
+    install_info = {
+        url = "https://github.com/ikatyang/tree-sitter-markdown",
+        files = { "src/parser.c", "src/scanner.cc" },
+        branch = "master"
+    },
+    filetype = "markdown",
+    used_by = {"md", }
+}
+
+require "nvim-treesitter.configs".setup {
+    -- modules and their options
+    highlight = { enable = true },
+    textobjects = { enable = true },
+}
 EOF
 
 
