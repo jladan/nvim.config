@@ -4,6 +4,10 @@ endif
 
 let mapleader = " "
 
+" I kept accidentally doing <c-z><c-z> instead of ZZ, so this fixes it and
+" adds saving
+noremap <C-Z> <cmd>w<CR>
+
 colorscheme jladan
 call togglebg#map("<F4>")
 
