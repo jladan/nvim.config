@@ -1,3 +1,18 @@
+LaTeX
+=====
+
+I'm starting to see ways that Treesitter + Telescope can help with my latex
+writing. Here are a few options:
+- Bibtex: 
+    - use a treesitter query to find the included bibtex file
+    - query that file for all the possible citation keywords
+    - have a telescope picker that inserts a citation for me from the list
+        - if in citation node, then just add selected
+        - if outside citation node, create a new citation with all selected
+- References:
+    - treesitter can find all references
+    - use telescope to select the reference that I want.
+
 Telescope
 =========
 
@@ -37,3 +52,15 @@ untracked files in my worktree. Instead, I have started to do:
 :Git commit -m "message"
 
 Some shortcut sequences for those could be very useful
+
+Tree-Sitter
+===========
+
+I mostly installed this for folding, but the markdown document tree isn't
+arranged well. This is because headings do not contain the following contents
+in their tree.
+
+To figure it out:
+  - Can we change the grammar to add a tree structure to the document?
+    - This is the way the latex parser works, and it folds really well
+  - Possibly use a custom folding function and queries to do it
