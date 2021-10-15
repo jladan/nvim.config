@@ -5,13 +5,32 @@ I'm starting to see ways that Treesitter + Telescope can help with my latex
 writing. Here are a few options:
 - Bibtex: 
     - use a treesitter query to find the included bibtex file
+        - entry->key  gives the possible keys for citations
     - query that file for all the possible citation keywords
     - have a telescope picker that inserts a citation for me from the list
         - if in citation node, then just add selected
         - if outside citation node, create a new citation with all selected
-- References:
-    - treesitter can find all references
+- Cross References:
+    - The LSP can get all the \labels as "Symbols"
+        - This doesn't seem to include citations, but does include unlabeled
+          sections
+    - treesitter can find all labels
+        - (label_definition name: (word))
+        - (label_reference label: (word))
     - use telescope to select the reference that I want.
+
+Another plugin to make: Outline viewer
+- Create a scratch buffer (`nvim_create_buf(false, true)`) to store the outline
+- Name the buffer "outline"
+- Open it in a new window beside the document
+- Use either treesitter or LSP to get the chapter and section headings, and copy
+  them over
+- Optional:
+    - highlighting
+    - include the labels
+    - some kind of preview of the contents (first comment)
+    - sync the scrolling: if cursor is in section, highlight that line
+    - navigate to section from outline window
 
 Telescope
 =========
@@ -21,6 +40,8 @@ Set up telescope functions with the <leader>t lead-in
 - [ ] add hotkey to open in split or tab (maybe <C-v>, <C-h>, <C-t> )
     - this seems to be done already, with these keys
 - [ ] allow file creation from the find_files builtin
+
+- [ ] Adjust the layout rules so that there are always a few results shown in that pane
 
 LSP
 ===
@@ -64,3 +85,6 @@ To figure it out:
   - Can we change the grammar to add a tree structure to the document?
     - This is the way the latex parser works, and it folds really well
   - Possibly use a custom folding function and queries to do it
+  - treesitter-highlight seems a bit sketchy
+
+vim:filetype=markdown
