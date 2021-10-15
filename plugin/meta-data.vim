@@ -14,8 +14,8 @@ nnoremap <leader>d "=strftime('%F')<CR>
 inoremap <C-h>d <C-R>=strftime('%F')<CR>
 
 " Current Time Mappings (t)
-nnoremap <leader>t "=strftime('%T')<CR>
-inoremap <C-h>t <C-R>=strftime('%T')<CR>
+nnoremap <leader>t "=strftime('%H:%M')<CR>
+inoremap <C-h>t <C-R>=strftime('%H:%M')<CR>
 
 " Author (a)
 nnoremap <leader>a "='John Ladan'<CR>
