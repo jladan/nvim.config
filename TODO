@@ -87,4 +87,22 @@ To figure it out:
   - Possibly use a custom folding function and queries to do it
   - treesitter-highlight seems a bit sketchy
 
+NVIM Development
+================
+
+I found that repeatedly typing in `:lua print(___)` over and over in the vim
+command prompt is a pain. I'd like to be able to enter lua code directly.
+    - Seems like nvim-luadev will do it
+
+    - [ ] Configure maps for nvim-luadev 
+
+Really neat would be stuff like "run selection" and log the output to a scratch
+buffer.
+    - nvim-luadev does this with <Plug>(Luadev-Run)
+
+Also, some kind of REPL is always useful.
+    - nvim-luapad was close to this but re-evaluates the buffer too much
+
+For actually printing tables, `vim.inspect()` is useful
+
 vim:filetype=markdown
