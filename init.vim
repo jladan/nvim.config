@@ -128,6 +128,9 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
+" Things to make developing with lua easier
+Plug 'bfredl/nvim-luadev'
+
 " Orgmode based on treesitter, like I wanted
 Plug 'kristijanhusak/orgmode.nvim', {'branch': 'tree-sitter'}
 call plug#end()
