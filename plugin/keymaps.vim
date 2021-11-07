@@ -31,3 +31,15 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 nnoremap <leader>j :m .+1<CR>==
 nnoremap <leader>k :m .-2<CR>==
+
+" Snippets
+" note: the expression allows overloading tab, which I normally don't like
+imap <silent><expr> <tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<tab>'
+inoremap <silent> <C-h> <cmd>lua require'luasnip'.jump(1)<cr>
+inoremap <silent> <CS-h> <cmd>lua require'luasnip'.jump(-1)<cr>
+
+snoremap <silent> <C-h> <cmd>lua require'luasnip'.jump(1)<cr>
+snoremap <silent> <CS-h> <cmd>lua require'luasnip'.jump(-1)<cr>
+
+imap <silent><expr> <C-e> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-e>'
+smap <silent><expr> <C-e> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-e>'

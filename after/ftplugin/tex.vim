@@ -20,3 +20,13 @@ function! Synctex()
 endfunction
 
 nnoremap ]p <cmd>call Synctex()<cr>
+
+" cross reference
+inoremap <c-c>r <CMD>lua require("nvim-latex.telescope").cross_reference {keepinsert = true}<CR>
+nnoremap <c-c>r <CMD>lua require("nvim-latex.telescope").cross_reference {}<CR>
+" citation
+inoremap <c-c>c <CMD>lua require("nvim-latex.telescope").citation {keepinsert = true}<CR>
+nnoremap <c-c>c <CMD>lua require("nvim-latex.telescope").citation {}<CR>
+
+" Load friendly snippets
+lua require("luasnip/loaders/from_vscode").load({include = {"latex"}})
