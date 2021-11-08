@@ -57,8 +57,8 @@ ls.snippets = {
                 "\t\\begin{center}", ""}),
             t("\t\t\\includegraphics[width=.95\\textwidth]{figures/"), i(1), t({"}", ""}),
             t({"\t\\end{center}", ""}),
-            t("\\caption{"), i(2), t({"}", ""}),
-            t("\\label{fig:"), i(3), t({"}", ""}),
+            t("\t\\caption{"), i(2), t({"}", ""}),
+            t("\t\\label{fig:"), i(3), t({"}", ""}),
             t({ "\\end{figure}", ""}),
         }),
         s("env", {
