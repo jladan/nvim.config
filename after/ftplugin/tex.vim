@@ -24,6 +24,9 @@ nnoremap ]p <cmd>call Synctex()<cr>
 " cross reference
 inoremap <c-c>r <CMD>lua require("nvim-latex.telescope").cross_reference {keepinsert = true}<CR>
 nnoremap <c-c>r <CMD>lua require("nvim-latex.telescope").cross_reference {}<CR>
+" Equation reference
+inoremap <c-c>e <CMD>lua require("nvim-latex.telescope").eq_reference {keepinsert = true}<CR>
+nnoremap <c-c>e <CMD>lua require("nvim-latex.telescope").eq_reference {}<CR>
 " citation
 inoremap <c-c>c <CMD>lua require("nvim-latex.telescope").citation {keepinsert = true}<CR>
 nnoremap <c-c>c <CMD>lua require("nvim-latex.telescope").citation {}<CR>
