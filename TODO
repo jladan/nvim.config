@@ -2,35 +2,43 @@ LaTeX
 =====
 
 I'm starting to see ways that Treesitter + Telescope can help with my latex
-writing. Here are a few options:
+writing. I have started implementing these in nvim-latex
 - Bibtex: 
-    - use a treesitter query to find the included bibtex file
+    - [X] use a treesitter query to find the included bibtex file
         - entry->key  gives the possible keys for citations
-    - query that file for all the possible citation keywords
-    - have a telescope picker that inserts a citation for me from the list
-        - if in citation node, then just add selected
-        - if outside citation node, create a new citation with all selected
+    - [X] query that file for all the possible citation keywords
+    - [X] have a telescope picker that inserts a citation for me from the list
+        - [ ] if in citation node, then just add selected
+        - [X] if outside citation node, create a new citation with all selected
 - Cross References:
-    - The LSP can get all the \labels as "Symbols"
+    - [ ] The LSP can get all the \labels as "Symbols"
         - This doesn't seem to include citations, but does include unlabeled
           sections
-    - treesitter can find all labels
+    - [X] treesitter can find all labels
         - (label_definition name: (word))
         - (label_reference label: (word))
-    - use telescope to select the reference that I want.
+    - [X] use telescope to select the reference that I want.
 
 Another plugin to make: Outline viewer
+This has started to be implemented in nvim-latex.
 - Create a scratch buffer (`nvim_create_buf(false, true)`) to store the outline
 - Name the buffer "outline"
 - Open it in a new window beside the document
-- Use either treesitter or LSP to get the chapter and section headings, and copy
-  them over
+- [X] Use either treesitter or LSP to get the chapter and section headings
 - Optional:
-    - highlighting
-    - include the labels
-    - some kind of preview of the contents (first comment)
-    - sync the scrolling: if cursor is in section, highlight that line
-    - navigate to section from outline window
+    - [ ] highlighting
+    - [ ] include the labels
+    - [ ] some kind of preview of the contents (first comment)
+    - [ ] sync the scrolling: if cursor is in section, highlight that line
+    - [ ] navigate to section from outline window
+
+Some additional things that will help:
+- text objects for finding equations (not just environments, but each line in an
+  `align` as well
+- Find the unlabelled sections, and suggest labels
+- snippets for some common things: \left \right, frac, etc
+- use LSP and/or the aux file to find all errors and warnings efficiently
+- synctex navigation for skim and zathura
 
 Telescope
 =========

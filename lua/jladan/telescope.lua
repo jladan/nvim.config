@@ -154,7 +154,7 @@ function M.edit_diary()
     local opts_with_preview, opts_without_preview
 
     opts_with_preview = {
-        prompt_title = "~ dotfiles ~",
+        prompt_title = "~ diary ~",
         shorten_path = false,
         cwd = '$diary',
 
