@@ -1,3 +1,18 @@
+General
+=======
+
+- Figure out why my insert-mode underline keymap doesn't work on my macbook
+- Some kind of way to mark and move blocks of text
+    - it would be a lot like `"ay` or `"ad` then `"aP`, but I don't like that
+      workflow, because it is a lot of keystrokes and remembering which register
+      can be used. Moving also commits to the move, and can sometimes be lost,
+      meaning a bunch of undoing, and jumps around the document.
+    - something like
+        1. Select the text in visual mode
+        2. `gy` stores the selection
+        3. navigate to the destination
+        4. `gp` or `gm` copies or moves the stored selection
+        5. Nothing happens if 4 is not done.
 LaTeX
 =====
 

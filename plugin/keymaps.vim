@@ -1,5 +1,9 @@
+" I kept accidentally doing <c-z><c-z> instead of ZZ, so this fixes it and
+" adds saving
+noremap <C-Z> <cmd>w<CR>
 " Quit without saving (but not if there are changes)
 nnoremap <silent> ZH :q<CR>
+
 " navigation through quickfix (actually loclist)
 nnoremap <silent> ]e :lbelow<CR>
 nnoremap <silent> ]E :labove<CR>
