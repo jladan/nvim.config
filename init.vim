@@ -7,6 +7,7 @@ let mapleader = " "
 colorscheme jladan
 call togglebg#map("<F4>")
 
+" Default tab options for most files
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
@@ -17,9 +18,13 @@ set viewoptions-=options
 " Loads the vimrc in current directory (for special project configs)
 set exrc
 
+" Line number settings
 set relativenumber
 set nu
 set cursorline
+
+" Default to use markers in folding
+set foldmethod=marker
 
 " Sanity
 set nowrap
