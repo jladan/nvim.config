@@ -28,6 +28,8 @@ noremap ]<space> :b<space>
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>Y gg"+yG
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
 
 " Moving text
 " The `=` takes care of indenting
