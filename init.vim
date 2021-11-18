@@ -61,6 +61,9 @@ let g:warn_root = 0
 " Fancy status line {{{
 " TODO fix the colors
 function! MyStatusLine(mode)
+    if win_gettype() == 'preview'
+        return ""
+    end
     let statusline=""
     if a:mode == 'Enter'
         let statusline.="%1*"
@@ -77,8 +80,11 @@ function! MyStatusLine(mode)
     return statusline
 endfunction
 
-au WinEnter * setlocal statusline=%!MyStatusLine('Enter')
-au WinLeave * setlocal statusline=%!MyStatusLine('Leave')
+augroup statusline
+    au WinEnter * setlocal statusline=%{%MyStatusLine('Enter')%}
+    au WinLeave * setlocal statusline=%{%MyStatusLine('Leave')%}
+augroup END
+
 set statusline=%!MyStatusLine('Enter')
 
 function! InsertStatuslineColor(mode)
