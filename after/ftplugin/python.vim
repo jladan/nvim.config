@@ -46,6 +46,6 @@ function! PythonIsDocStart(lnum)
 endfunction
 
 setlocal foldmethod=expr
-setlocal foldexpr=PythonFoldExpr()
+setlocal foldexpr=nvim_treesitter#foldexpr()
 
 let &foldlevel = max(map(range(1, line('$')), 'foldlevel(v:val)'))

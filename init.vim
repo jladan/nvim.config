@@ -233,6 +233,11 @@ require("orgmode").setup {
 }
 EOF
 
+" Treesitter folding
+augroup treefold
+    au WinEnter *.py,*.tex,*.lua setlocal foldmethod=expr
+    au WinEnter *.py,*.tex,*.lua setlocal foldexpr=nvim_treesitter#foldexpr()
+augroup END
 
 nnoremap <leader>u :UndotreeToggle<CR>
 
