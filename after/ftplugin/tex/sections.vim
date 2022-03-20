@@ -14,9 +14,9 @@ function! s:NextSection(type, backwards, visual)
     endif
 
     if a:type == 1
-        let pattern = '\v\\(sub)*section\{'
+        let pattern = '\v\\(sub)*section\**\{'
     else
-        let pattern = '\v\\begin\{(table|figure)\}'
+        let pattern = '\v\\begin\{(table\**|figure\**)\}'
     endif
 
     execute 'silent normal! ' . dir . pattern . "\r"
