@@ -147,9 +147,6 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 " Things to make developing with lua easier
 Plug 'bfredl/nvim-luadev'
 
-" Orgmode based on treesitter, like I wanted
-Plug 'kristijanhusak/orgmode.nvim', {'branch': 'tree-sitter'}
-
 " My own latex plugin
 let g:plug_url_format = 'git@github.com:%s.git'
 Plug 'jladan/nvim-latex'
@@ -227,10 +224,6 @@ require "nvim-treesitter.configs".setup {
     ensure_installed = "maintained",
 }
 
-require("orgmode").setup {
-    org_agenda_files = {'~/Documents/diary/org/*'},
-    org_default_notes_file = '$scratch/refile.org',
-}
 EOF
 
 " Treesitter folding
