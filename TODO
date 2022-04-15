@@ -1,6 +1,8 @@
 General
 =======
 
+- Figure out spelling files once and for all.
+
 - Figure out why my insert-mode underline keymap doesn't work on my macbook
 - Some kind of way to mark and move blocks of text
     - it would be a lot like `"ay` or `"ad` then `"aP`, but I don't like that
@@ -13,6 +15,23 @@ General
         3. navigate to the destination
         4. `gp` or `gm` copies or moves the stored selection
         5. Nothing happens if 4 is not done.
+
+Note-taking
+===========
+
+Create a note-taking plugin using markdown and pandoc
+- [ ] set the :make and :compiler to handle it properly
+- [ ] bring in images and rescale to appropriate sizes
+- [ ] track original location of images and rename approprately
+- [ ] Some helper functions to handle git merges and pushes
+      - I'm using git annex, and full repos on my desktop and laptop, so in
+        order to push to desktop, I need keep my work in a separate branch.
+      - Command: git add [...]; git annex add [...]; git commit; git checkout
+        master; git merge; git push; git checkout writing.
+      - The checking out master, merging, then checking out the writing  branch
+        is annoying.
+      - Maybe something with worktrees?
+
 LaTeX
 =====
 
@@ -27,11 +46,14 @@ Some additional things that will help:
 - synctex navigation for skim and zathura
 - snippets
     - table environment?
+- supplement syntax highlighting with `% TODO` and `% XXX`
+- See if this will work for the `# {{{`, `# }}}` as well (for folding purposes)
 
 Telescope
 =========
 
 Set up telescope functions with the <leader>t lead-in
+- [ ] Ignore directories like `__pycache__`
 - [ ] s : grep search
 - [ ] add hotkey to open in split or tab (maybe <C-v>, <C-h>, <C-t> )
     - this seems to be done already, with these keys

@@ -4,9 +4,20 @@ noremap <silent> <C-Z> <cmd>w<CR>
 " Quit without saving (but not if there are changes)
 nnoremap <silent> ZH :q<CR>
 
+" Shortcuts into the <C-X> completion menu
+inoremap <C-F> <C-X><C-F>
+inoremap <C-L> <C-X><C-L>
+
 " navigation through quickfix (actually loclist)
 nnoremap <silent> ]e :lbelow<CR>
 nnoremap <silent> ]E :labove<CR>
+
+" In insert mode, I use <C-space> as a leader, but <C-space><C-space> defaults
+" to repeating thet  last insert mode command.
+" My keyboard has also started double-tapping space, which is really annoying.
+" This fixes that issue
+imap <C-space><C-space> <C-space>
+nmap <space><space> <space>
 
 " Underlining commands for comments and markdown
 nnoremap <leader>u :t .<CR>Vr
