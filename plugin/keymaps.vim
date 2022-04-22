@@ -33,6 +33,7 @@ nnoremap <silent> ]u :cn<cr>
 nnoremap <silent> ]e :bn<cr>
 nnoremap <silent> ]. :bp<cr>
 noremap ]<space> :b<space>
+noremap ]<C-space> :sb<space>
 
 "" The following from ThePrimeagen
 " Improved copying
