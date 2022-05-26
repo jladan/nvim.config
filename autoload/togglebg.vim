@@ -12,9 +12,9 @@ let g:loaded_togglebg = 1
 " in fact, there is remapping, but only of script locally defined remaps, in 
 " this case <SID>TogBG. The <script> argument modifies the noremap scope in 
 " this regard (and the noremenu below).
-nnoremap <unique> <script> <Plug>ToggleBackground <SID>TogBG
-inoremap <unique> <script> <Plug>ToggleBackground <ESC><SID>TogBG<ESC>a
-vnoremap <unique> <script> <Plug>ToggleBackground <ESC><SID>TogBG<ESC>gv
+nnoremap <silent> <unique> <script> <Plug>ToggleBackground <SID>TogBG
+inoremap <silent> <unique> <script> <Plug>ToggleBackground <ESC><SID>TogBG<ESC>a
+vnoremap <silent> <unique> <script> <Plug>ToggleBackground <ESC><SID>TogBG<ESC>gv
 nnoremenu <script> Window.Toggle\ Background <SID>TogBG
 inoremenu <script> Window.Toggle\ Background <ESC><SID>TogBG<ESC>a
 vnoremenu <script> Window.Toggle\ Background <ESC><SID>TogBG<ESC>gv
@@ -36,10 +36,6 @@ if !exists(":ToggleBG")
     command ToggleBG :call s:TogBG()
 endif
 
-function! ToggleBackground()
-    echo "Please update your ToggleBackground mapping. ':help togglebg' for information."
-endfunction
-
 function! togglebg#map(mapActivation)
     try
         exe "silent! nmap <unique> ".a:mapActivation." <Plug>ToggleBackground"
@@ -50,6 +46,6 @@ function! togglebg#map(mapActivation)
     endtry
 endfunction
 
-if !exists("no_plugin_maps") && !hasmapto('<Plug>ToggleBackground')
-    call togglebg#map("<F5>")
-endif
+" if !exists("no_plugin_maps") && !hasmapto('<Plug>ToggleBackground')
+"     call togglebg#map("<F5>")
+" endif
