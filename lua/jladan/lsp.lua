@@ -55,6 +55,18 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+nvim_lsp.elixirls.setup({
+    cmd = {"elixir-ls"},
+    -- capabilities = capabilities,
+    on_attach = on_attach,
+    settings = {
+        elixirLS = {
+            dialyzerEnabled = false,
+            fetchDeps = false
+        }
+    }
+})
+
 -- [[ This creates an error for some reason
 -- local sumneko_root_path = vim.fn.expand('~/.local/src/lua-language-server')
 -- local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
