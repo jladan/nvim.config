@@ -19,17 +19,17 @@ ls.config.set_config({
     updateevents = 'TextChanged, TextChangedI',
 })
 
-ls.snippets = {
-    lua = {
-        s("if", {
-            t("if "), i(1), t({" then", "\t"}),
-                i(2),
-            t({ "", "end", "" }),
-        }),
-        s("for", {
-            t("for "), i(1), t({" do", "\t"}),
-                i(2),
-            t({ "", "end", "" }),
-        }),
-    },
-}
+ls.add_snippets("lua", {
+    s("if", {
+        t("if "), i(1), t({" then", "\t"}),
+        i(2),
+        t({ "", "end", "" }),
+    }),
+    s("for", {
+        t("for "), i(1), t({" do", "\t"}),
+        i(2),
+        t({ "", "end", "" }),
+    }),
+}, {
+    key = "lua",
+})

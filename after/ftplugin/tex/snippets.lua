@@ -40,39 +40,39 @@ ls.config.set_config({
     updateevents = 'TextChanged, TextChangedI',
 })
 
-ls.snippets = {
-    tex = {
-        s("ls", {
-            t({ "\\begin{itemize}", "\t\\item "}),
-            i(1),
-            d(2, rec_ls, {}),
-            t({ "", "\\end{itemize}" }),
-        }),
-        head_snip("sec", "section", "sec"),
-        head_snip("ssec", "subsection", "sec"),
-        head_snip("sssec", "subsubsection", "sec"),
-        head_snip("cha", "chapter", "ch"),
-        s("fig", {
-            t({ "\\begin{figure}",
-                "\t\\begin{center}", ""}),
-            t("\t\t\\includegraphics[width=.95\\textwidth]{figures/"), i(1), t({"}", ""}),
-            t({"\t\\end{center}", ""}),
-            t("\t\\caption{"), i(2), t({"}", ""}),
-            t("\t\\label{fig:"), i(3), t({"}", ""}),
-            t({ "\\end{figure}", ""}),
-        }),
-        s("env", {
-            t("\\begin{"), i(1), t({"}", ""}),
-            t("\t"), i(0), 
-            t({"", "\\end{"}), f(copy, 1), t({"}", ""}),
-        }),
-        s("frac", {
-            t("\\frac{"), i(1), t("}{"), i(2), t("}"),
-        }),
-        s("left", {
-            t("\\left"), c(1, {t("("), t("["), t("{"), t("|"), t(".")}), t(" "),
-            i(3),
-            t(" \\right"), c(2, {t(")"), t("]"), t("}"), t("|"), t(".")}), t(" ")
-        }),
-    },
-}
+ls.add_snippets("tex", {
+    s("ls", {
+        t({ "\\begin{itemize}", "\t\\item "}),
+        i(1),
+        d(2, rec_ls, {}),
+        t({ "", "\\end{itemize}" }),
+    }),
+    head_snip("sec", "section", "sec"),
+    head_snip("ssec", "subsection", "sec"),
+    head_snip("sssec", "subsubsection", "sec"),
+    head_snip("cha", "chapter", "ch"),
+    s("fig", {
+        t({ "\\begin{figure}",
+            "\t\\begin{center}", ""}),
+        t("\t\t\\includegraphics[width=.95\\textwidth]{figures/"), i(1), t({"}", ""}),
+        t({"\t\\end{center}", ""}),
+        t("\t\\caption{"), i(2), t({"}", ""}),
+        t("\t\\label{fig:"), i(3), t({"}", ""}),
+        t({ "\\end{figure}", ""}),
+    }),
+    s("env", {
+        t("\\begin{"), i(1), t({"}", ""}),
+        t("\t"), i(0), 
+        t({"", "\\end{"}), f(copy, 1), t({"}", ""}),
+    }),
+    s("frac", {
+        t("\\frac{"), i(1), t("}{"), i(2), t("}"),
+    }),
+    s("left", {
+        t("\\left"), c(1, {t("("), t("["), t("{"), t("|"), t(".")}), t(" "),
+        i(3),
+        t(" \\right"), c(2, {t(")"), t("]"), t("}"), t("|"), t(".")}), t(" ")
+    }),
+}, {
+    key = "tex",
+})
