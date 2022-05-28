@@ -121,13 +121,17 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin(stdpath('data') . '/plugged')
+call plug#begin()
 Plug 'neovim/nvim-lspconfig'
 
+" Languages
+Plug 'elixir-editors/vim-elixir'
+
+" Telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 
 " Snippets
 Plug 'L3MON4D3/LuaSnip'
@@ -169,31 +173,11 @@ lua << EOF
 require "jladan.lsp"
 require "jladan.telescope"
 
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.markdown = {
-    install_info = {
-        url = "https://github.com/ikatyang/tree-sitter-markdown",
-        files = { "src/parser.c", "src/scanner.cc" },
-        branch = "master"
-    },
-    filetype = "markdown",
-    used_by = {"md", }
-}
-parser_config.org = {
-    install_info = {
-        url = 'https://github.com/milisims/tree-sitter-org',
-        revision = 'main',
-        files = {'src/parser.c', 'src/scanner.cc'},
-    },
-    filetype = 'org',
-}
-
-
 require "nvim-treesitter.configs".setup {
     -- modules and their options
     highlight = { 
         enable = true,
-        disable = {'org', 'markdown'},
+        disable = {'latex', 'tex', 'org', 'markdown', 'elixir'},
         additional_vim_regex_highlighting = {'org'},
     },
     textobjects = { enable = true },
