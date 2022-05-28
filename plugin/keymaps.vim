@@ -4,6 +4,9 @@ noremap <silent> <C-Z> <cmd>w<CR>
 " Quit without saving (but not if there are changes)
 nnoremap <silent> ZH :q<CR>
 
+" My down-arrow is below j, so sometimes I hit <S-Down> instead of J
+nnoremap <S-Down> J
+
 " Shortcuts into the <C-X> completion menu
 inoremap <C-F> <C-X><C-F>
 inoremap <C-L> <C-X><C-L>
@@ -22,6 +25,8 @@ nmap <space><space> <space>
 " Underlining commands for comments and markdown
 nnoremap <leader>u :t .<CR>Vr
 inoremap <expr> <C-space>u "<C-\><c-N>:t .<CR>Vr" . nr2char(getchar()) . "o"
+inoremap <C-space>- <C-\><c-N>:t .<CR>Vr-o
+inoremap <C-space>= <C-\><c-N>:t .<CR>Vr=o
 
 " To help with code refactoring, search through all files for current word
 nnoremap <silent> <leader>r :vimgrep <cword> **/*.py<cr>:cope<cr><C-W>p
@@ -45,10 +50,10 @@ vnoremap <leader>p "+p
 
 " Moving text
 " The `=` takes care of indenting
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-nnoremap <leader>j :m .+1<CR>==
-nnoremap <leader>k :m .-2<CR>==
+vnoremap J :m '>+1<CR>gv
+vnoremap K :m '<-2<CR>gv
+nnoremap <leader>j :m .+1<CR>
+nnoremap <leader>k :m .-2<CR>
 
 " Snippets
 " note: the expression allows overloading tab, which I normally don't like
