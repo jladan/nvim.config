@@ -124,6 +124,8 @@ endif
 call plug#begin()
 Plug 'neovim/nvim-lspconfig'
 
+Plug 'tpope/vim-commentary'
+
 " Languages
 Plug 'elixir-editors/vim-elixir'
 
@@ -177,7 +179,7 @@ require "nvim-treesitter.configs".setup {
     -- modules and their options
     highlight = { 
         enable = true,
-        disable = {'latex', 'tex', 'org', 'markdown', 'elixir'},
+        disable = {'org', 'markdown', 'elixir'},
         additional_vim_regex_highlighting = {'org'},
     },
     textobjects = { enable = true },
@@ -212,8 +214,8 @@ EOF
 
 " Treesitter folding
 augroup treefold
-    au WinEnter *.py,*.tex,*.lua setlocal foldmethod=expr
-    au WinEnter *.py,*.tex,*.lua setlocal foldexpr=nvim_treesitter#foldexpr()
+    au WinEnter *.tex,*.lua setlocal foldmethod=expr
+    au WinEnter *.tex,*.lua setlocal foldexpr=nvim_treesitter#foldexpr()
 augroup END
 
 nnoremap <leader>u :UndotreeToggle<CR>
