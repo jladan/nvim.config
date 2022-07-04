@@ -56,13 +56,22 @@ ls.add_snippets("tex", {
             "\t\\begin{center}", ""}),
         t("\t\t\\includegraphics[width=.95\\textwidth]{figures/"), i(1), t({"}", ""}),
         t({"\t\\end{center}", ""}),
-        t("\t\\caption{"), i(2), t({"}", ""}),
-        t("\t\\label{fig:"), i(3), t({"}", ""}),
+        t("\t\\caption{"), i(3), t({"}", ""}),
+        t("\t\\label{fig:"), i(2), t({"}", ""}),
         t({ "\\end{figure}", ""}),
+    }),
+    s("tab", {
+        t({ "\\begin{table}",
+            "\t\\caption{"}), i(1), t({"}", ""}),
+        t({"\t\\begin{tabular}{}", ""}),
+        t("\t\t"), i(3),
+        t({"", "\t\\end{tabular}", ""}),
+        t("\t\\label{tab:"), i(2), t({"}", ""}),
+        t({ "\\end{table}", ""}),
     }),
     s("env", {
         t("\\begin{"), i(1), t({"}", ""}),
-        t("\t"), i(0), 
+        t("\t"), i(2), 
         t({"", "\\end{"}), f(copy, 1), t({"}", ""}),
     }),
     s("frac", {
@@ -73,6 +82,11 @@ ls.add_snippets("tex", {
         i(3),
         t(" \\right"), c(2, {t(")"), t("]"), t("}"), t("|"), t(".")}), t(" ")
     }),
+    -- todo:
+    --  - enumerate
+    --  - label
+    --  - mathrm
+    --  - align
 }, {
     key = "tex",
 })

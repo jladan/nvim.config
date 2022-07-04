@@ -57,8 +57,8 @@ nnoremap <leader>k :m .-2<CR>
 
 " Snippets
 " note: the expression allows overloading tab, which I normally don't like
-imap <silent><expr> <tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<tab>'
-inoremap <silent> <C-h> <cmd>lua require'luasnip'.jump(1)<cr>
+"imap <silent><expr> <tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<tab>'
+inoremap <silent> <C-h> <Plug>luasnip-expand-or-jump
 inoremap <silent> <CS-h> <cmd>lua require'luasnip'.jump(-1)<cr>
 
 snoremap <silent> <C-h> <cmd>lua require'luasnip'.jump(1)<cr>
