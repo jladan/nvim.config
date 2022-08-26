@@ -4,8 +4,11 @@ endif
 
 let mapleader = " "
 
+set mouse=""
+
 colorscheme jladan
 call togglebg#map("<F5>")
+hi CursorLine cterm=undercurl guisp=DarkMagenta
 
 " Default tab options for most files
 set tabstop=4 softtabstop=4
