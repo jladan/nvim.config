@@ -23,10 +23,10 @@ imap <C-space><C-space> <C-space>
 nmap <space><space> <space>
 
 " Underlining commands for comments and markdown
-nnoremap <leader>u :t .<CR>Vr
-inoremap <expr> <C-space>u "<C-\><c-N>:t .<CR>Vr" . nr2char(getchar()) . "o"
-inoremap <C-space>- <C-\><c-N>:t .<CR>Vr-o
-inoremap <C-space>= <C-\><c-N>:t .<CR>Vr=o
+nnoremap <leader>u :t .<CR>^v$r
+inoremap <expr> <C-space>u "<C-\><c-N>:t .<CR>^v$r" . nr2char(getchar()) . "o"
+inoremap <C-space>- <C-\><c-N>:t .<CR>^v$r-o
+inoremap <C-space>= <C-\><c-N>:t .<CR>^v$r=o
 
 " To help with code refactoring, search through all files for current word
 nnoremap <silent> <leader>r :vimgrep <cword> **/*.py<cr>:cope<cr><C-W>p
