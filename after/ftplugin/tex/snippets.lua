@@ -36,16 +36,21 @@ end
 
 
 ls.config.set_config({
-    history=true,
-    updateevents = 'TextChanged, TextChangedI',
+    history=false,
+    delete_check_events='InsertLeave',
 })
 
 ls.add_snippets("tex", {
-    s("ls", {
-        t({ "\\begin{itemize}", "\t\\item "}),
-        i(1),
-        d(2, rec_ls, {}),
-        t({ "", "\\end{itemize}" }),
+    s("enum", {
+        t("\\begin{"), c(1, {
+            t("enumerate"),
+            t("itemize"),
+            t("description"),
+        }), 
+        t({"}", "\t\\item "}),
+        i(2),
+        d(3, rec_ls, {}),
+        t({"", "\\end{"}), f(copy, 1), t({"}", ""}),
     }),
     head_snip("sec", "section", "sec"),
     head_snip("ssec", "subsection", "sec"),
@@ -82,11 +87,20 @@ ls.add_snippets("tex", {
         i(3),
         t(" \\right"), c(2, {t(")"), t("]"), t("}"), t("|"), t(".")}), t(" ")
     }),
+    s("eq", {
+        t("\\begin{"), c(1, {
+            t("equation"),
+            t("align"),
+            t("equation*"),
+            t("align*")}), t({"}", ""}),
+        t("\t"), i(2), 
+        -- t({"", "\t\\label{eq:"}), i(3), t("}"),
+        t({"", "\\end{"}), f(copy, 1), t({"}", ""}),
+    }),
+    s("lab", {t("\\label{"), i(1), t("}")}),
     -- todo:
     --  - enumerate
-    --  - label
     --  - mathrm
-    --  - align
 }, {
     key = "tex",
 })

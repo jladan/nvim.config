@@ -16,7 +16,7 @@ function! s:NextSection(type, backwards, visual)
     if a:type == 1
         let pattern = '\v\\(sub)*section\**\{'
     else
-        let pattern = '\v\\begin\{(table\**|figure\**)\}'
+        let pattern = '\v\\begin\{(wrap)*(table\**|figure\**)\}'
     endif
 
     execute 'silent normal! ' . dir . pattern . "\r"
