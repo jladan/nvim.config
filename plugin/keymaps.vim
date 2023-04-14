@@ -22,6 +22,9 @@ nnoremap <silent> ]E :labove<CR>
 imap <C-space><C-space> <C-space>
 nmap <space><space> <space>
 
+" undotree keymap
+" TODO fix the conflict for <leader>u
+nnoremap <leader>u :UndotreeToggle<CR>
 " Underlining commands for comments and markdown
 nnoremap <leader>u :t .<CR>^v$r
 inoremap <expr> <C-space>u "<C-\><c-N>:t .<CR>^v$r" . nr2char(getchar()) . "o"
