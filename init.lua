@@ -3,7 +3,7 @@ vim.g.maplocalleader = ' '
 
 vim.cmd [[colorscheme  jladan]]
 
--- Install the package manager
+-- Install/bootstrap the package manager
 local ensure_packer = function()
     local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
     if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -18,11 +18,50 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-return require('packer').startup(function(use)
+local packer = require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
-    -- plugins go here?
+
+    use {
+      'nvim-telescope/telescope.nvim', tag = '0.1.1',
+      requires = { {'nvim-lua/plenary.nvim'} }
+    }
+    use 'neovim/nvim-lspconfig'
+
+    use 'tpope/vim-commentary'
+
+    -- Languages
+    use 'elixir-editors/vim-elixir'
+
+    -- Snippets
+    use 'L3MON4D3/LuaSnip'
+
+    -- Actually super cool
+    use 'mbbill/undotree'
+
+    -- Git in vim
+    use 'tpope/vim-fugitive'
+
+    -- Treesitter does parses languages
+    use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+    use 'nvim-treesitter/playground'
+    use 'nvim-treesitter/nvim-treesitter-textobjects'
+
+    -- Things to make developing with lua easier
+    use 'bfredl/nvim-luadev'
+
+    -- My own latex plugin
+    use 'jladan/nvim-latex'
 
     if packer_bootstrap then
         require('packer').sync()
     end
 end)
+
+vim.cmd [[
+    augroup packer_user_config
+        autocmd!
+        autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+    augroup end
+]]
+
+require('jladan.telescope')

@@ -2,14 +2,12 @@
 
 -- Just the mappings for now, no special pickers
 
-local sorters = require "telescope.sorters"
 local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
 
 -- Setup (straight from theprimeagen
 require("telescope").setup({
     defaults = {
-        file_sorter = require("telescope.sorters").get_fzy_sorter,
         prompt_prefix = " >",
         color_devicons = true,
 
@@ -78,7 +76,6 @@ map_tele("<leader>tw", "grep_string", {
     word_match = "-w",
     only_sort_text = true,
     layout_strategy = "vertical",
-    sorter = sorters.get_fzy_sorter(),
 })
 
 -- Files
