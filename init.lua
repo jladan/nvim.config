@@ -11,3 +11,4 @@ require('jladan.packer')
 
 require('jladan.telescope')
 require('jladan.treesitter')
+require('jladan.lsp')
