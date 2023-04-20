@@ -470,9 +470,9 @@ if !( (&term=="cygwin") + has("win32") )
     let &t_SI = "\<Esc>]12;sky blue\x7"
     " use a red cursor otherwise
     let &t_EI = "\<Esc>]12;light salmon\x7"
-    silent !echo -ne "\033]12;light salmon\007"
+    " silent !echo -ne "\033]12;light salmon\007"
     " reset cursor when vim exits
-    autocmd VimLeave * silent !echo -ne "\033]112\007"
+    " autocmd VimLeave * silent !echo -ne "\033]112\007"
 endif
 ""}}}
 " License "{{{
