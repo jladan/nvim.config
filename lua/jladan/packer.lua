@@ -21,6 +21,8 @@ local packer = require('packer').startup(function(use)
       requires = { {'nvim-lua/plenary.nvim'} }
     }
     use 'neovim/nvim-lspconfig'
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/nvim-cmp'
 
     use 'tpope/vim-commentary'
 
@@ -29,6 +31,7 @@ local packer = require('packer').startup(function(use)
 
     -- Snippets
     use 'L3MON4D3/LuaSnip'
+    use 'saadparwaiz1/cmp_luasnip'
 
     -- Actually super cool
     use 'mbbill/undotree'
