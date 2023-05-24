@@ -50,6 +50,12 @@ local packer = require('packer').startup(function(use)
     -- My own latex plugin
     use 'jladan/nvim-latex'
 
+    -- Orgmode
+    use {'nvim-orgmode/orgmode', config = function()
+            require('orgmode').setup{}
+        end
+    }
+
     if packer_bootstrap then
         require('packer').sync()
     end
