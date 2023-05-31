@@ -15,6 +15,8 @@ local packer_bootstrap = ensure_packer()
 
 local packer = require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
+    use {'williamboman/mason.nvim', run = ':MasonUpdate'}
+    use 'williamboman/mason-lspconfig.nvim'
 
     use {
       'nvim-telescope/telescope.nvim', tag = '0.1.1',
@@ -23,11 +25,17 @@ local packer = require('packer').startup(function(use)
     use 'neovim/nvim-lspconfig'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-nvim-lsp-signature-help'
+    use 'hrsh7th/cmp-nvim-lua'
 
     use 'tpope/vim-commentary'
 
     -- Languages
     use 'elixir-editors/vim-elixir'
+    use 'simrat39/rust-tools.nvim'
+    -- Debugging
+    use 'nvim-lua/plenary.nvim'
+    use 'mfussenegger/nvim-dap'
 
     -- Snippets
     use 'L3MON4D3/LuaSnip'

@@ -9,4 +9,5 @@ nnoremap <buffer> r gr
 nnoremap <buffer> R gR
 
 " First line is a header
-call matchaddpos("Title", [1])
+call matchaddpos("Title", [1], 2)
+call matchadd("Identifier", "^#.*$", 1)

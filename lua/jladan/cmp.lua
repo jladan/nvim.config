@@ -12,10 +12,6 @@ cmp.setup({
             require('luasnip').lsp_expand(args.body)
         end,
     },
-    window = {
-        -- completion = cmp.config.window.bordered(),
-        -- documentation = cp.config.windowed.bordered(),
-    },
     mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -26,12 +22,31 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'nvim_lua' },
+        { name = 'nvim_lsp_signature_help' },
     }, {
         -- { name = 'buffer'},
-    })
+    }),
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
+    formatting = {
+        fields = {'menu', 'abbr', 'kind'},
+        format = function(entry, item)
+            local menu_icon = {
+                nvim_lsp = 'λ',
+                vsnip = '⋗',
+                buffer = 'Ω',
+                path = '🖫',
+            }
+            item.menu = menu_icon[entry.source.name]
+            return item
+        end,
+    },
 })
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-require('lspconfig')['rust_analyzer'].setup {
-    capabilities = capabilities
-}
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- require('lspconfig')['rust_analyzer'].setup {
+--     capabilities = capabilities
+-- }
