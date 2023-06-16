@@ -21,4 +21,40 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = {'org'},
   },
+  textobjects = {
+      -- Refer to https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+      select = {
+          enable = true,
+          -- Automatically jump forward to text obj
+          lookahead = true,
+
+          keymaps = {
+              -- You can use the capture groupse defined in textobjects.scm
+              ["aa"] = "@parameter.outer",
+              ["ia"] = "@parameter.inner",
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              ["ic"] = "@class.inner",
+              ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" }
+          },
+          selection_modes = {
+              ['@parameter.outer'] = 'v',
+              ['@function.outer'] = 'V',
+              ['@class.outer'] = 'V',
+          },
+          -- If set to `true`, then objects extended to include preceding or succeeding whitespace.
+          include_surrounding_whitespace = false,
+      },
+      swap = {
+          enable = true,
+          swap_next = {
+              ["<leader>a"] = "@parameter.inner",
+          },
+          swap_previous = {
+              ["<leader>A"] = "@parameter.inner",
+          },
+      },
+      -- move {} can be used to define section like movements (TODO)
+  }
 }
