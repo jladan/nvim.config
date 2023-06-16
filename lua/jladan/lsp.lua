@@ -14,7 +14,7 @@ local servers = {
     'pyright', 
     'texlab', 
     -- 'rust_analyzer',
-    -- 'tsserver',
+    'tsserver',
 }
 for _, lsp in ipairs(servers) do
     -- for opts, see :help lspconfig-setup
