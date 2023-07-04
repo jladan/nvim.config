@@ -30,13 +30,13 @@ require'nvim-treesitter.configs'.setup {
 
           keymaps = {
               -- You can use the capture groupse defined in textobjects.scm
-              ["aa"] = "@parameter.outer",
-              ["ia"] = "@parameter.inner",
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["ac"] = "@class.outer",
-              ["ic"] = "@class.inner",
-              ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" }
+              ["aa"] = { query = "@parameter.outer", desc = "Select outer argument" },
+              ["ia"] = { query = "@parameter.inner", desc = "Select inner argument" },
+              ["af"] = { query = "@function.outer", desc = "Select outer function" },
+              ["if"] = { query = "@function.inner", desc = "Select inner function" },
+              ["ac"] = { query = "@class.outer", desc = "Select outer class" },
+              ["ic"] = { query = "@class.inner", desc = "Select inner class" },
+              ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
           },
           selection_modes = {
               ['@parameter.outer'] = 'v',
@@ -55,6 +55,24 @@ require'nvim-treesitter.configs'.setup {
               ["<leader>A"] = "@parameter.inner",
           },
       },
-      -- move {} can be used to define section like movements (TODO)
+      move = {
+          enable = true,
+          set_jumps = true, -- add jumps to jumplist
+          goto_next_start = {
+              ["]f"] = "@function.outer",
+              -- TODO decide on this based on language
+              ["]]"] = {query = {"@class.outer", "@section.outer"}, desc = "Next class start" },
+              ["]s"] = {query = "@scope", query_group = "locals", desc = "Next Scope" },
+          },
+          goto_next_end = {
+              ["]F"] = "@function.outer",
+          },
+          goto_previous_start = {
+              ["[f"] = "@function.outer",
+          },
+          goto_previous_end = {
+              ["[F"] = "@function.outer",
+          },
+      },
   }
 }
