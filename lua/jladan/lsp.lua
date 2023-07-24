@@ -15,6 +15,8 @@ local servers = {
     'texlab', 
     -- 'rust_analyzer',
     'tsserver',
+    'tailwindcss',
+    'gopls',
 }
 for _, lsp in ipairs(servers) do
     -- for opts, see :help lspconfig-setup
