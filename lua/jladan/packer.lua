@@ -23,10 +23,14 @@ local packer = require('packer').startup(function(use)
       requires = { {'nvim-lua/plenary.nvim'} }
     }
     use 'neovim/nvim-lspconfig'
+    -- Autocomplete
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp-signature-help'
     use 'hrsh7th/cmp-nvim-lua'
+
+    -- TODO highlighting and searching
+    use 'folke/todo-comments.nvim'
 
     use 'tpope/vim-commentary'
 

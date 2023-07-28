@@ -29,3 +29,29 @@ rt.setup({
     },
 })
 
+
+-- Highlighting todos and such
+
+require("todo-comments").setup({
+    highlight = { 
+        pattern = [[.*<(KEYWORDS)\s*]],
+        keyword = "fg",
+        after = "",
+    },
+    keywords = { 
+        FIX = { hlgroup = "Error" },
+        TODO = { hlgroup = "Todo" },
+        HACK = { hlgroup = "DiagnosticWarn" },
+        WARN = { hlgroup = "DiagnosticWarn" },
+        PERF = { hlgroup = "Todo" },
+        NOTE = { hlgroup = "DiagnosticOk" },
+        TEST = { hlgroup = "Todo" },
+    },
+    search = {
+        pattern = [[\b(KEYWORDS)\b]],
+    },
+})
+
+local tc = require("todo-comments")
+vim.keymap.set("n", "]t", tc.jump_next, {desc = "Next todo comment" })
+vim.keymap.set("n", "[t", tc.jump_prev, {desc = "Previous todo comment" })
