@@ -41,6 +41,7 @@ cmp.setup({
                 path = '🖫',
             }
             item.menu = menu_icon[entry.source.name]
+            return item
         end,
     },
 })
