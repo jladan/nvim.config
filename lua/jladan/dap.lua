@@ -11,14 +11,18 @@ local function conditional_breakpoint()
 end
 
 
-vim.keymap.set("n", "<leader>dc", dap.continue)
+vim.keymap.set("n", "<F5>", dap.continue)
 vim.keymap.set("n", "<F1>", dap.step_into)
 vim.keymap.set("n", "<F2>", dap.step_over)
 vim.keymap.set("n", "<F3>", dap.step_out)
+vim.keymap.set("n", "<leader>dq", dap.close)
 vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint)
 vim.keymap.set("n", "<leader>dB", conditional_breakpoint)
 vim.keymap.set("n", "<leader>dl", log_point)
 vim.keymap.set("n", "<leader>dr", dap.repl.open)
+vim.keymap.set("n", "<leader>do", require"dapui".open)
+vim.keymap.set("n", "<leader>dc", require"dapui".close)
+vim.keymap.set("n", "<leader>dt", require"dap-go".debug_test)
 
 require("dap-go").setup()
 require("dapui").setup()
