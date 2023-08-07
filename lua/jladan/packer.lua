@@ -18,6 +18,8 @@ local packer = require('packer').startup(function(use)
     use {'williamboman/mason.nvim', run = ':MasonUpdate'}
     use 'williamboman/mason-lspconfig.nvim'
 
+    -- General purpose
+    use 'nvim-lua/plenary.nvim'
     use {
       'nvim-telescope/telescope.nvim', tag = '0.1.1',
       requires = { {'nvim-lua/plenary.nvim'} }
@@ -37,9 +39,12 @@ local packer = require('packer').startup(function(use)
     -- Languages
     use 'elixir-editors/vim-elixir'
     use 'simrat39/rust-tools.nvim'
+
     -- Debugging
-    use 'nvim-lua/plenary.nvim'
     use 'mfussenegger/nvim-dap'
+    use 'rcarriga/nvim-dap-ui'
+    use 'leoluz/nvim-dap-go'
+    -- use 'nvim-telescoope/telescope-dap.nvim'
 
     -- Snippets
     use 'L3MON4D3/LuaSnip'

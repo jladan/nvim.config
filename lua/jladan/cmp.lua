@@ -41,7 +41,6 @@ cmp.setup({
                 path = '🖫',
             }
             item.menu = menu_icon[entry.source.name]
-            return require("tailwindcss-colorizer-cmp").formatter(entry, item)
         end,
     },
 })
