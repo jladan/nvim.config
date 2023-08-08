@@ -16,16 +16,30 @@ vim.keymap.set("n", "<F1>", dap.step_into)
 vim.keymap.set("n", "<F2>", dap.step_over)
 vim.keymap.set("n", "<F3>", dap.step_out)
 vim.keymap.set("n", "<leader>dq", dap.close)
-vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint)
-vim.keymap.set("n", "<leader>dB", conditional_breakpoint)
-vim.keymap.set("n", "<leader>dl", log_point)
+vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
+vim.keymap.set("n", "<leader>B", conditional_breakpoint)
+vim.keymap.set("n", "<leader>lp", log_point)
 vim.keymap.set("n", "<leader>dr", dap.repl.open)
 vim.keymap.set("n", "<leader>do", require"dapui".open)
 vim.keymap.set("n", "<leader>dc", require"dapui".close)
 vim.keymap.set("n", "<leader>dt", require"dap-go".debug_test)
 
 require("dap-go").setup()
-require("dapui").setup()
+require("dapui").setup({
+    icons = { expanded = "▼", collapsed = "►", current_frame = "◎◆" },
+    controls = {
+        icons = {
+            pause = "➤",
+            play = "►",
+            step_into = "⤓",
+            step_over = "🠊",
+            step_out = "⤒",
+            step_back = "🠈",
+            run_last = "↻",
+            terminate = "☒",
+        },
+    },
+})
 
 -- The go debugger is set  up using nvim-dap-go
 -- dap.adapters.delve = {
