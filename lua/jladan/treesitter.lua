@@ -62,7 +62,7 @@ require'nvim-treesitter.configs'.setup {
               ["]f"] = "@function.outer",
               -- TODO decide on this based on language
               ["]]"] = {query = {"@class.outer", "@section.outer"}, desc = "Next class start" },
-              ["]s"] = {query = "@scope", query_group = "locals", desc = "Next Scope" },
+              -- ["]s"] = {query = "@scope", query_group = "locals", desc = "Next Scope" },
           },
           goto_next_end = {
               ["]F"] = "@function.outer",

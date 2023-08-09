@@ -24,7 +24,9 @@ vim.keymap.set("n", "<leader>do", require"dapui".open)
 vim.keymap.set("n", "<leader>dc", require"dapui".close)
 vim.keymap.set("n", "<leader>dt", require"dap-go".debug_test)
 
+-- Go debugger using delve
 require("dap-go").setup()
+
 require("dapui").setup({
     icons = { expanded = "▼", collapsed = "►", current_frame = "◎◆" },
     controls = {
@@ -41,15 +43,40 @@ require("dapui").setup({
     },
 })
 
--- The go debugger is set  up using nvim-dap-go
--- dap.adapters.delve = {
---     type = 'server',
---     port = '${port}',
---     executable = {
---         command = 'dlv',
---         args = {'dap', '-l', '127.0.0.1:${port}'},
---     }
+
+-- dap.adapters.rust_lldb = {
+--     id = "rust-lldb",
+--     type = 'executable',
+--     command = "rust-lldb",
 -- }
+
+
+dap.configurations.rust = {
+    {
+        name = "Launch codelldb",
+        type = "rt_lldb",
+        request = "launch",
+        program = function()
+            return vim.fn.input( "Path to executable", vim.fn.getcwd() .. "/", "file")
+        end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        args = {},
+        runInTerminal = false,
+    },
+--     {
+--         name = "Launch lldb",
+--         type = "rust_lldb",
+--         request = "launch",
+--         program = function()
+--             return vim.fn.input( "Path to executable", vim.fn.getcwd() .. "/", "file")
+--         end,
+--         cwd = "${workspaceFolder}",
+--         stopOnEntry = false,
+--         args = {},
+--         runInTerminal = false,
+--     },
+}
 
 -- dap.configurations.go = {
 --     {
