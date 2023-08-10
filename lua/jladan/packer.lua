@@ -37,7 +37,6 @@ local packer = require('packer').startup(function(use)
     use 'tpope/vim-commentary'
 
     -- Languages
-    use 'elixir-editors/vim-elixir'
     use 'simrat39/rust-tools.nvim'
 
     -- Debugging

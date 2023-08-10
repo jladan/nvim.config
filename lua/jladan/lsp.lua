@@ -9,6 +9,8 @@ if not has_lsp then
     return
 end
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 -- Use a loop to conveniently call 'setup' on multiple servers
 local servers = { 
     'pyright', 
@@ -20,11 +22,15 @@ local servers = {
 }
 for _, lsp in ipairs(servers) do
     -- for opts, see :help lspconfig-setup
-  lspconfig[lsp].setup {}
+  lspconfig[lsp].setup {
+      capabilities = capabilities,
+  }
 end
 
 lspconfig.elixirls.setup({
-    cmd = {"elixir-ls"},
+    capabilities = capabilities,
+    cmd = {"/home/jladan/.local/share/nvim/mason/packages/elixir-ls/language_server.sh"},
+    -- TODO: Get the capabilities set up properly with cmp
     -- capabilities = capabilities,
     settings = {
         elixirLS = {

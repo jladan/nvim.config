@@ -7,12 +7,16 @@ vim.cmd [[
 ]]
 
 
+-- TODO: reconfigure snippets
+--       - global rather than ftype?
+--       - reloadable by sourcing lua
+--       - go over the teej_dv videos for ideas
 require('jladan.packer')
 
 require('jladan.telescope')
 require('jladan.treesitter')
-require('jladan.lsp')
 require('jladan.cmp')
+require('jladan.lsp')
 
 require("jladan.dap")
 
