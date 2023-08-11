@@ -6,6 +6,10 @@ if not hascmp then
 end
 
 cmp.setup({
+    completion = {
+        -- TODO: decide if manual completion is what I want
+        autocomplete = false,
+    },
     snippet = {
         -- Snippet engine must be specified
         expand = function(args)
@@ -16,25 +20,26 @@ cmp.setup({
         -- TODO: Consider changing scrolling keymaps
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        -- TODO: Ctrl space should definitely change, since it's my insert-mode leader
-        -- TODO: Is there some way to make it optionally manual (no auto-menu, but pops up on special key)
-        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-s>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
+        -- TODO: make sure that this cooperates well with luasnip
         ['<C-h>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
     sources = cmp.config.sources({
-        -- TODO: order of these matter, can also use priority method
         { name = 'luasnip' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
         { name = 'nvim_lsp_signature_help' },
-        -- TODO: add "buffer" for words in current  buffer
     }, {
-        -- { name = 'buffer'},
+        { name = 'buffer'},
     }),
     window = {
         -- TODO: I don't like the bordered window, different colours would be better?
         completion = cmp.config.window.bordered(),
+        -- completion = {
+        --     -- TODO: create highlight groupse for Normal and CursorLine
+        --     winhighlight = 'Normal:Normal,CursorLine:Visual,Search:None'
+        -- },
         documentation = cmp.config.window.bordered(),
     },
     formatting = {
@@ -42,7 +47,6 @@ cmp.setup({
         fields = {'menu', 'abbr', 'kind'},
         format = function(entry, item)
             local menu_icon = {
-                -- TODO, consider changing marker to  be more clear
                 nvim_lsp = 'λ',
                 vsnip = '⋗',
                 buffer = 'Ω',
