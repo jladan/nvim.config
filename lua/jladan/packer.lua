@@ -25,6 +25,7 @@ local packer = require('packer').startup(function(use)
       requires = { {'nvim-lua/plenary.nvim'} }
     }
     use 'neovim/nvim-lspconfig'
+
     -- Autocomplete
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp'
@@ -49,6 +50,8 @@ local packer = require('packer').startup(function(use)
     -- Snippets
     use 'L3MON4D3/LuaSnip'
     use 'saadparwaiz1/cmp_luasnip'
+    use 'mattn/emmet-vim'
+    use 'dcampos/cmp-emmet-vim'
 
     -- Actually super cool
     use 'mbbill/undotree'
@@ -56,16 +59,13 @@ local packer = require('packer').startup(function(use)
     -- Git in vim
     use 'tpope/vim-fugitive'
 
-    -- Treesitter does parses languages
+    -- Treesitter does language parsing
     use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
     use 'nvim-treesitter/playground'
     use 'nvim-treesitter/nvim-treesitter-textobjects'
 
     -- Things to make developing with lua easier
     use 'bfredl/nvim-luadev'
-
-    -- My own latex plugin
-    use 'jladan/nvim-latex'
 
     -- Orgmode
     use {'nvim-orgmode/orgmode', config = function()
