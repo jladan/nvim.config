@@ -14,6 +14,10 @@ set smartindent
 set viewoptions-=options
 
 " Loads the vimrc in current directory (for special project configs)
+" This is one of (in order of precedence)
+" - ".nvim.lua"
+" - ".nvimrc"
+" - ".exrc"
 set exrc
 
 " Line number settings

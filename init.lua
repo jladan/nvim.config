@@ -6,6 +6,18 @@ vim.cmd [[
     hi CursorLine cterm=undercurl guisp=DarkMagenta
 ]]
 
+-- 2-space files
+vim.cmd [[
+    colorscheme  jladan
+    hi CursorLine cterm=undercurl guisp=DarkMagenta
+    au Filetype html setlocal ts=2 sw=2 expandtab
+    au Filetype css setlocal ts=2 sw=2 expandtab
+    au Filetype javascript setlocal ts=2 sw=2 expandtab
+    au Filetype javascriptreact setlocal ts=2 sw=2 expandtab
+    au Filetype typescript setlocal ts=2 sw=2 expandtab
+    au Filetype json setlocal ts=2 sw=2 expandtab
+]]
+
 
 -- TODO: reconfigure snippets
 --       - global rather than ftype?

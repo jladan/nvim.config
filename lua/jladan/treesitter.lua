@@ -29,7 +29,7 @@ require'nvim-treesitter.configs'.setup {
           lookahead = true,
 
           keymaps = {
-              -- You can use the capture groupse defined in textobjects.scm
+              -- You can use the capture groups defined in textobjects.scm
               ["aa"] = { query = "@parameter.outer", desc = "Select outer argument" },
               ["ia"] = { query = "@parameter.inner", desc = "Select inner argument" },
               ["af"] = { query = "@function.outer", desc = "Select outer function" },

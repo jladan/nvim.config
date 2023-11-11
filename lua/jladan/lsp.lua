@@ -16,6 +16,7 @@ local servers = {
     'pyright', 
     'texlab', 
     -- 'rust_analyzer',
+    'eslint',
     'tsserver',
     'tailwindcss',
     'gopls',
