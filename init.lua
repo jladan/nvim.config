@@ -91,3 +91,35 @@ require("todo-comments").setup({
 local tc = require("todo-comments")
 vim.keymap.set("n", "]t", tc.jump_next, {desc = "Next todo comment" })
 vim.keymap.set("n", "[t", tc.jump_prev, {desc = "Previous todo comment" })
+
+-- Snippets (general)
+local ls = require("luasnip")
+
+ls.config.set_config({
+    history=false,
+    delete_check_events='InsertLeave',
+})
+
+
+local s = ls.snippet
+local sn = ls.snippet_node
+local t = ls.text_node
+local i = ls.insert_node
+local f = ls.function_node
+local c = ls.choice_node
+local d = ls.dynamic_node
+
+local function copy(args)
+    return args[1]
+end
+
+ls.add_snippets("markdown", {
+    s("head", {
+        t("# "), i(1),
+        t({"", "", "```toml", "date = "}), i(2),
+        t({"", "tags = ["}), i(3), t("]"),
+        t({"", "```", ""}),
+    }),
+}, {
+    key = "notes",
+})

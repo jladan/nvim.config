@@ -7,8 +7,8 @@ end
 
 cmp.setup({
     completion = {
-        -- TODO: decide if manual completion is what I want
-        autocomplete = false,
+        -- I tried forcing manual completion, and didn't like it
+        -- autocomplete = false,
     },
     snippet = {
         -- Snippet engine must be specified
@@ -21,7 +21,7 @@ cmp.setup({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-s>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
+        -- ['<C-e>'] = cmp.mapping.abort(),
         -- TODO: make sure that this cooperates well with luasnip
         ['<C-h>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
@@ -61,4 +61,4 @@ cmp.setup({
 -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- require('lspconfig')['rust_analyzer'].setup {
 --     capabilities = capabilities
--- }
+
