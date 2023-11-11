@@ -4,6 +4,9 @@ noremap <silent> <C-Z> <cmd>w<CR>
 " Quit without saving (but not if there are changes)
 nnoremap <silent> ZH :q<CR>
 
+" Go to a file even if it doesn't exist
+nnoremap <silent> gF :e <cfile><CR>
+
 " My down-arrow is below j, so sometimes I hit <S-Down> instead of J
 nnoremap <S-Down> J
 
