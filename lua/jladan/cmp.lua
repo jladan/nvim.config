@@ -30,7 +30,10 @@ cmp.setup({
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
         { name = 'nvim_lsp_signature_help' },
-        { name = 'emmet_vim'},
+        { name = 'emmet_vim', option = {
+                filetypes = {'html', 'xml'},
+            },
+        },
     }, {
         { name = 'buffer'},
     }),

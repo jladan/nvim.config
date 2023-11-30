@@ -17,6 +17,8 @@ vim.cmd [[
     au Filetype typescript setlocal ts=2 sw=2 expandtab
     au Filetype json setlocal ts=2 sw=2 expandtab
     set rtp^="/home/jladan/.opam/default/share/ocp-indent/vim"
+
+    let g:user_emmet_install_global = 0
 ]]
 
 
