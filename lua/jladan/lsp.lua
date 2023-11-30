@@ -13,34 +13,56 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Use a loop to conveniently call 'setup' on multiple servers
 local servers = { 
-    'pyright', 
-    'texlab', 
-    -- 'rust_analyzer',
-    'eslint',
-    'tsserver',
-    'tailwindcss',
-    'gopls',
-}
-for _, lsp in ipairs(servers) do
-    -- for opts, see :help lspconfig-setup
-  lspconfig[lsp].setup {
-      capabilities = capabilities,
-  }
-end
+    pyright = true, 
+    texlab = true, 
+    -- rust_analyzer' = true,
+    eslint = true,
+    tsserver = true,
+    tailwindcss = true,
+    gopls = true,
+    ocamllsp = {
+        -- cmd = { "/home/tjdevries/git/ocaml-lsp/_build/default/ocaml-lsp-server/bin/main.exe" },
+        settings = {
+            codelens = { enable = true },
+        },
 
-lspconfig.elixirls.setup({
-    capabilities = capabilities,
-    cmd = {"/home/jladan/.local/share/nvim/mason/packages/elixir-ls/language_server.sh"},
-    -- TODO: Get the capabilities set up properly with cmp
-    -- capabilities = capabilities,
-    settings = {
-        elixirLS = {
-            dialyzerEnabled = false,
-            fetchDeps = false
+        get_language_id = function(_, ftype)
+            return ftype
+        end,
+    },
+    elixirls = {
+        cmd = {"/home/jladan/.local/share/nvim/mason/packages/elixir-ls/language_server.sh"},
+        settings = {
+            elixirLS = {
+                dialyzerEnabled = false,
+                fetchDeps = false
+            }
         }
     }
-})
+}
 
+local setup_server = function(server, config)
+    if not config then
+        return
+    end
+
+    if type(config) ~= "table" then
+        config = {}
+    end
+
+    config = vim.tbl_deep_extend("force", {
+        -- on_init = custom_init,
+        -- on_attach = on_attach,
+        capabilities = capabilities,
+    }, config)
+
+    lspconfig[server].setup(config)
+end
+
+for lsp, config in pairs(servers) do
+    -- for opts, see :help lspconfig-setup
+    setup_server(lsp, config)
+end
 
 
 -- Global mappings.

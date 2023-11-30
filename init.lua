@@ -16,6 +16,7 @@ vim.cmd [[
     au Filetype javascriptreact setlocal ts=2 sw=2 expandtab
     au Filetype typescript setlocal ts=2 sw=2 expandtab
     au Filetype json setlocal ts=2 sw=2 expandtab
+    set rtp^="/home/jladan/.opam/default/share/ocp-indent/vim"
 ]]
 
 
