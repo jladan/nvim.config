@@ -1,6 +1,10 @@
 # Just my neovim config files
 
-This has grown a lot since I started
+**Starting over from fresh.** The below may or may not get included in my
+re-write.
+
+It had overgrown itself, and only worked reliably on my desktop. The below may
+also be out-of-date.
 
 ## Features
 
@@ -8,7 +12,7 @@ This has grown a lot since I started
 
 - Keymaps defined in `plugin/keymaps` include
     - quickfix and buffer navigation
-    - underlining text
+    - underlining text (e.g. for markdown headers)
     - copying to clipboard
     - moving text up and down lines
 - Fancy status line in `init.vim` that uses color to show current window and if

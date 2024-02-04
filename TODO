@@ -1,3 +1,12 @@
+REWRITE
+=======
+
+- [ ] Start with kickstart.nvim
+- [ ] develop on windows to establish cross-platform in the hardest case
+- [ ] decide which plugins that I had I actually want to keep
+- [ ] consider alternatives (like for fugitive and netrw)
+- [ ] Re-evaluate the below todo list
+
 General
 =======
 
