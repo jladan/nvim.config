@@ -16,7 +16,7 @@ let g:warn_root = 0
 function! MyStatusLine(mode)
     if win_gettype() == 'preview'
         return ""
-    end
+    endif
     let statusline=""
     if a:mode == 'Enter'
         let statusline.="%1*"
@@ -25,7 +25,7 @@ function! MyStatusLine(mode)
     endif
     if g:warn_root
         let statusline.="ROOT"
-    end
+    endif
     " buffer and filename
     let statusline.="\(%n\)\ %<%f\ "
     " modified and read-only 
@@ -48,20 +48,20 @@ set statusline=%!MyStatusLine('Enter')
 
 " TODO: this doesn't set the indicator color before the change to insert mode
 function! ModeIndicator()
-  let mode = v:event.new_mode
-  if mode ==? 'i'
-    " echo('insert mode')
-    hi ModeMsg guibg=orange ctermbg=lightred
-  elseif mode =~? '[rR]'
-    " echo('replace mode')
-    hi ModeMsg guibg=#e454ba ctermbg=magenta
-  elseif mode =~# '[vV\x16]'
-    " echo('visual mode')
-    hi ModeMsg guibg=#e454ba ctermbg=magenta
-  else
-    " echo('other')
-    hi ModeMsg guibg=orange ctermbg=lightred
-  endif
+    let mode = v:event.new_mode
+    if mode ==? 'i'
+        " echo('insert mode')
+        hi ModeMsg guibg=orange ctermbg=lightred
+    elseif mode =~? '[rR]'
+        " echo('replace mode')
+        hi ModeMsg guibg=#e454ba ctermbg=magenta
+    elseif mode =~# '[vV\x16]'
+        " echo('visual mode')
+        hi ModeMsg guibg=#e454ba ctermbg=magenta
+    else
+        " echo('other')
+        hi ModeMsg guibg=orange ctermbg=lightred
+    endif
 endfunction 
 "}}}
 
