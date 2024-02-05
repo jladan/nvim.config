@@ -4,6 +4,9 @@
 " but wish it would work with other UI features
 set mouse=""
 
+
+colorscheme jladan
+
 " Default tab options for most files
 set tabstop=4 softtabstop=4
 set shiftwidth=4
