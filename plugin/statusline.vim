@@ -1,7 +1,7 @@
 "Fancy status line carried over from years ago
 "
 " Color definitions:
-hi StatuslineNC guifg=#888888
+hi StatuslineNC guifg=#888888 guibg=black
 " Active window accent (green)
 hi User1 ctermfg=0 ctermbg=2 guifg=#000000 guibg=#27ae60
 " Modified flag accent (red)
@@ -10,6 +10,7 @@ hi User2 ctermfg=0 ctermbg=1 guifg=#000000 guibg=#c0392b
 " Mode indicator
 hi ModeMsg guifg=black guibg=orange ctermfg=black ctermbg=lightred 
 
+" TODO: opening from netrw doesn't update colours
 
 let g:warn_root = 0
 " Fancy status line {{{

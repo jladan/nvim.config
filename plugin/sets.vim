@@ -23,6 +23,7 @@ set exrc
 set relativenumber
 set nu
 set cursorline
+hi CursorLine ctermbg=none cterm=undercurl guibg=none gui=undercurl guisp=DarkMagenta
 
 " Default to use markers in folding
 set foldmethod=marker
@@ -31,6 +32,7 @@ set foldmethod=marker
 set nowrap
 set hidden
 set noerrorbells
+set foldlevel=99
 
 " nice stuff
 set scrolloff=4
