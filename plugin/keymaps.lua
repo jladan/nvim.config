@@ -11,6 +11,19 @@ Rewritten in lua, so that descriptions are included when looking at my keymaps.
 ^"txciwvim.keymap.set({ 't', },wi"Ea",wi"A", { desc = "XXX" })
 --]]
 
+-- Ignore leader key (normally jumps ahead)
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+-- I also use <C-space> as leader in insert mode (normally repeats last insert command)
+vim.keymap.set({ 'i' }, '<C-Space>', '<Nop>', { silent = true })
+
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+-- TODO possibly different keys for these
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+
 -- I kept accidentally doing <c-z><c-z> instead of ZZ, so this fixes it and
 -- adds saving
 vim.keymap.set('n', '<C-Z>', "<cmd>w<CR>", { silent=true, desc="save file" })
