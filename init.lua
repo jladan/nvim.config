@@ -7,7 +7,7 @@ vim.g.maplocalleader = ' '
 -- Set shell on windows
 -- alternatively, use vim.fn.has('macunix'), but cannot find in helpfiles
 if vim.loop.os_uname().sysname == 'Windows_NT' then
-    vim.g.shell = "powershell.exe"
+    vim.go.shell = "powershell.exe"
 end
 
 -- [[ Install `lazy.nvim` plugin manager ]]
@@ -73,23 +73,23 @@ require('lazy').setup({
             -- Additional lua configuration, makes nvim stuff amazing!
             'folke/neodev.nvim',
         },
+    },
 
-        {
-            -- Autocompletion
-            'hrsh7th/nvim-cmp',
-            dependencies = {
-                -- Snippet Engine & its associated nvim-cmp source
-                'L3MON4D3/LuaSnip',
-                'saadparwaiz1/cmp_luasnip',
+    {
+        -- Autocompletion
+        'hrsh7th/nvim-cmp',
+        dependencies = {
+            -- Snippet Engine & its associated nvim-cmp source
+            'L3MON4D3/LuaSnip',
+            'saadparwaiz1/cmp_luasnip',
 
-                -- Adds LSP completion capabilities
-                'hrsh7th/cmp-nvim-lsp',
-                'hrsh7th/cmp-path',
+            -- Adds LSP completion capabilities
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path',
 
-                -- Adds a number of user-friendly snippets
-                -- Kept for reference, but I prefer rolling my own
-                -- 'rafamadriz/friendly-snippets',
-            },
+            -- Adds a number of user-friendly snippets
+            -- Kept for reference, but I prefer rolling my own
+            -- 'rafamadriz/friendly-snippets',
         },
     },
 
