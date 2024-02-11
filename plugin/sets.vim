@@ -5,7 +5,8 @@
 set mouse=""
 
 
-colorscheme jladan
+" colorscheme tokyonight-night
+colorscheme rose-pine
 
 " Default tab options for most files
 set tabstop=4 softtabstop=4

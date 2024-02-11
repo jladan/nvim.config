@@ -37,6 +37,8 @@ require('lazy').setup({
     -- Carry over from previous
     'folke/todo-comments.nvim',
     'mbbill/undotree',
+    'folke/tokyonight.nvim',
+    'rose-pine/neovim',
 
     --[[ Debugging
     'mfussenegger/nvim-dap',
@@ -303,7 +305,18 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.defer_fn(function()
     require('nvim-treesitter.configs').setup {
         -- Add languages to be installed here that you want installed for treesitter
-        ensure_installed = { 'lua', 'python', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
+        ensure_installed = {
+            'lua',
+            'python',
+            'tsx',
+            'javascript',
+            'typescript',
+            'vimdoc',
+            'vim',
+            'bash',
+            'markdown',
+            'sql',
+        },
 
         -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
         auto_install = false,
