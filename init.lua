@@ -181,7 +181,9 @@ local on_attach = function(_, bufnr)
         vim.lsp.buf.code_action { context = { only = { 'quickfix', 'refactor', 'source' } } }
     end, '[C]ode [A]ction')
 
-    nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+    -- TODO: Choose which of these should be direct LSP rather than telescope
+    -- nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+    nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
     nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
     nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
     nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
@@ -438,14 +440,16 @@ cmp.setup {
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
-  defaults = {
-    mappings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
+    defaults = {
+        mappings = {
+            i = {
+                ['<C-u>'] = false,
+                ['<C-d>'] = false,
+                ["<C-x>"] = false,
+                ["<C-q>"] = require("telescope.actions").send_to_qflist,
+            },
+        },
     },
-  },
 }
 
 -- Enable telescope fzf native, if installed
@@ -484,19 +488,27 @@ local function live_grep_git_root()
     }
   end
 end
+local function edit_neovim()
+    local opts_with_preview, opts_without_preview
+
+    opts_with_preview = {
+        prompt_title = "~ dotfiles ~",
+        shorten_path = false,
+        cwd = vim.fn.stdpath('config'),
+    }
+
+    opts_without_preview = vim.deepcopy(opts_with_preview)
+    opts_without_preview.previewer = false
+
+    require("telescope.builtin").find_files(opts_with_preview)
+end
 
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
+vim.api.nvim_create_user_command('Config', edit_neovim, {})
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end, { desc = '[/] Fuzzily search in current buffer' })
+vim.keymap.set('n', '<leader>t<space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 
 local function telescope_live_grep_open_files()
   require('telescope.builtin').live_grep {
@@ -504,13 +516,14 @@ local function telescope_live_grep_open_files()
     prompt_title = 'Live Grep in Open Files',
   }
 end
-vim.keymap.set('n', '<leader>s/', telescope_live_grep_open_files, { desc = '[S]earch [/] in Open Files' })
-vim.keymap.set('n', '<leader>ss', require('telescope.builtin').builtin, { desc = '[S]earch [S]elect Telescope' })
-vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+vim.keymap.set('n', '<leader>t/', telescope_live_grep_open_files, { desc = '[T]elescope [/] in Open Files' })
+vim.keymap.set('n', '<leader>tt', require('telescope.builtin').builtin, { desc = '[T]elescope select [T]elescope builtin' })
+vim.keymap.set('n', '<leader>tf', require('telescope.builtin').git_files, { desc = '[T]elescope git [F]iles' })
+vim.keymap.set('n', '<leader>te', require('telescope.builtin').find_files, { desc = '[T]elescope [F]iles' })
+vim.keymap.set('n', '<leader>th', require('telescope.builtin').help_tags, { desc = '[T]elescope [H]elp' })
+vim.keymap.set('n', '<leader>tw', require('telescope.builtin').grep_string, { desc = '[T]elescope current [W]ord' })
+vim.keymap.set('n', '<leader>tg', ':LiveGrepGitRoot<cr>', { desc = '[T]elescope by [G]rep on Git Root' })
+vim.keymap.set('n', '<leader>tn', ':Config<cr>', { desc = '[T]elescope edit [N]eovim config' })
+vim.keymap.set('n', '<leader>tG', require('telescope.builtin').live_grep, { desc = '[T]elescope by [G]rep' })
+vim.keymap.set('n', '<leader>td', require('telescope.builtin').diagnostics, { desc = '[T]elescope [D]iagnostics' })
+vim.keymap.set('n', '<leader>tr', require('telescope.builtin').resume, { desc = '[T]elescope [R]esume' })
