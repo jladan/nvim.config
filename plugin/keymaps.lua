@@ -66,21 +66,22 @@ vim.keymap.set({ 'v', }, "K", ":m '<-2<CR>gv", { desc = "XXX" })
 vim.keymap.set({ 'n', }, "<leader>j", ":m .+1<CR>", { desc = "XXX" })
 vim.keymap.set({ 'n', }, "<leader>k", ":m .-2<CR>", { desc = "XXX" })
 
+--[[ local luasnip = require('luasnip')
+vim.keymap.set({ 's', }, "<C-t>", "<cmd>lua require'luasnip'.jump(1)<cr>", { silent=true, desc = "XXX" })
+vim.keymap.set({ 's', }, "<CS-t>", "<cmd>lua require'luasnip'.jump(-1)<cr>", { silent=true, desc = "XXX" })
+
+local function next_choice()
+    if luasnip.choice_active() then
+        luasnip.next_choice()
+    end
+end
+vim.keymap.set({ 'i', 's', }, "<C-e>", next_choice, { silent=true,  desc = "XXX" }) ]]
+
 --[[
--- TODO: un-map <C-space> completely so I can use it as a leader
--- In insert mode, I use <C-space> as a leader, but <C-space><C-space> defaults
--- to repeating thet  last insert mode command.
--- My keyboard has also started double-tapping space, which is really annoying.
--- This fixes that issue
-imap <C-space><C-space> <C-space>
-nmap <space><space> <space>
 
 -- Generalized underline characters
 nnoremap <leader>u :t .<CR>^v$r
 inoremap <expr> <C-space>u "<C-\><c-N>:t .<CR>^v$r" . nr2char(getchar()) . "o"
-
--- To help with code refactoring, search through all files for current word
-nnoremap <silent> <leader>r :vimgrep <cword> **/*.py<cr>:cope<cr><C-W>p
 
 -- Navigate the quickfix list
 nnoremap <silent> ]U :cp<cr>
@@ -94,12 +95,8 @@ nnoremap <silent> ]u :cn<cr>
 imap <silent><expr> <C-t> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<C-t>'
 inoremap <silent> <CS-t> <cmd>lua require'luasnip'.jump(-1)<cr>
 
-snoremap <silent> <C-t> <cmd>lua require'luasnip'.jump(1)<cr>
-snoremap <silent> <CS-t> <cmd>lua require'luasnip'.jump(-1)<cr>
-
-imap <silent><expr> <C-e> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-e>'
-smap <silent><expr> <C-e> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-e>'
-
+-- ]]
+--[[
 -- TODO undotree keymap
-nnoremap <leader>u :UndotreeToggle<CR>
---]]
+nnoremap <leader>u :UndotreeToggle<CR> 
+-- ]]

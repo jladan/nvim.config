@@ -404,34 +404,59 @@ cmp.setup {
         ['<C-p>'] = cmp.mapping.select_prev_item(),
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete {},
-        ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-        },
-        ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.expand_or_locally_jumpable() then
+        ['<C-s>'] = cmp.mapping.complete {},
+        ['<C-h>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        -- TODO: Can put luasnip keys here
+        ['<C-t>'] = cmp.mapping(function(fallback)
+            if luasnip.expand_or_locally_jumpable() then
                 luasnip.expand_or_jump()
             else
                 fallback()
             end
         end, { 'i', 's' }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.locally_jumpable(-1) then
+        ['<CS-t>'] = cmp.mapping(function(fallback)
+            if luasnip.locally_jumpable(-1) then
                 luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+        ['<C-e>'] = cmp.mapping(function(fallback)
+            if luasnip.choice_active() then
+                luasnip.next_choice()
             else
                 fallback()
             end
         end, { 'i', 's' }),
     },
     sources = {
-        { name = 'nvim_lsp' },
+        { name = "nvim_lsp",
+            -- ignore noisy lsp text recomendations
+            entry_filter = function(entry, ctx)
+                return cmp.lsp.CompletionItemKind.Text ~= entry:get_kind()
+            end },
         { name = 'luasnip' },
         { name = 'path' },
+        { name = 'nvim_lsp_signature_help' },
+        -- { name = 'emmet_vim', option = {
+        --         filetypes = {'html', 'xml'},
+        --     },
+        -- },
+    },
+    formatting = {
+        -- TODO: can add 'lspkind' plugin to make customization easier
+        expandable_indicator = true,
+        fields = {'menu', 'abbr', 'kind'},
+        format = function(entry, item)
+            local menu_icon = {
+                nvim_lsp = 'λ',
+                vsnip = '⋗',
+                buffer = 'Ω',
+                path = '🖫',
+            }
+            item.menu = menu_icon[entry.source.name]
+            return item
+        end,
     },
 }
 
@@ -527,3 +552,4 @@ vim.keymap.set('n', '<leader>tn', ':Config<cr>', { desc = '[T]elescope edit [N]e
 vim.keymap.set('n', '<leader>tG', require('telescope.builtin').live_grep, { desc = '[T]elescope by [G]rep' })
 vim.keymap.set('n', '<leader>td', require('telescope.builtin').diagnostics, { desc = '[T]elescope [D]iagnostics' })
 vim.keymap.set('n', '<leader>tr', require('telescope.builtin').resume, { desc = '[T]elescope [R]esume' })
+
