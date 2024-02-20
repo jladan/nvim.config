@@ -5,6 +5,7 @@ vim.g.maplocalleader = ' '
 
 -- Set any OS-specific configuration
 require('jladan').os_config()
+require('jladan').setup_scratch()
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim

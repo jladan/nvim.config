@@ -2,7 +2,7 @@
 
 local M = {}
 
-M.os_config = function()
+function M.os_config()
     -- Set shell on windows
     -- alternatively, use vim.fn.has('macunix'), but cannot find in helpfiles
     if vim.loop.os_uname().sysname == 'Windows_NT' then
@@ -18,5 +18,25 @@ M.os_config = function()
 
 end
 
+function M.new_scratch(opts)
+    -- TODO: if on unnamed, then convert current to scratch
+    local bufnr = vim.api.nvim_create_buf(true, true)
+    local cmd = {
+        cmd = 'buffer',
+        range = {bufnr},
+        mods = opts.smods,
+    }
+
+    if opts.smods.vertical or opts.smods.horizontal or opts.smods.tab >= 0 then
+        cmd.cmd = 'sbuffer'
+    end
+
+    vim.api.nvim_cmd(cmd, {})
+end
+
+function M.setup_scratch()
+    vim.api.nvim_create_user_command('Scratch', M.new_scratch, {})
+    vim.api.nvim_create_user_command('S', M.new_scratch, {})
+end
 
 return M
