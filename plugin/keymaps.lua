@@ -11,10 +11,12 @@ Rewritten in lua, so that descriptions are included when looking at my keymaps.
 ^"txciwvim.keymap.set({ 't', },wi"Ea",wi"A", { desc = "XXX" })
 --]]
 
+local ileader = '<C-Space>'
+
 -- Ignore leader key (normally jumps ahead)
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- I also use <C-space> as leader in insert mode (normally repeats last insert command)
-vim.keymap.set({ 'i' }, '<C-Space>', '<Nop>', { silent = true })
+vim.keymap.set({ 'i' }, ileader, '<Nop>', { silent = true })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
@@ -39,8 +41,8 @@ vim.keymap.set('i', "<C-F>", "<C-X><C-F>", { desc="complete filename"})
 vim.keymap.set('i', "<C-L>", "<C-X><C-L>", { desc="complete line"})
 
 -- Underlining commands for comments and markdown
-vim.keymap.set('i', "<C-space>-", "<C-\\><c-N>:t .<CR>^v$r-o", { silent=true, desc="single underline"})
-vim.keymap.set('i', "<C-space>=", "<C-\\><c-N>:t .<CR>^v$r=o", { silent=true, desc="double underline"})
+vim.keymap.set('i', ileader .. "-", "<C-\\><c-N>:t .<CR>^v$r-o", { silent=true, desc="single underline"})
+vim.keymap.set('i', ileader .. "=", "<C-\\><c-N>:t .<CR>^v$r=o", { silent=true, desc="double underline"})
 
 -- buffer navigation
 vim.keymap.set({ 'n', }, "]e", ":bn<cr>", { silent=true, desc = "next open buffer" })
@@ -50,12 +52,10 @@ vim.keymap.set({ 'n', }, "]<C-space>", ":sb<space>", { desc = "split open buffer
 
 --" The following from ThePrimeagen
 -- Improved copying
-vim.keymap.set({ 'n', }, "<leader>y", "\"+y", { desc = "XXX" })
-vim.keymap.set({ 'v', }, "<leader>y", "\"+y", { desc = "XXX" })
-vim.keymap.set({ 'n', }, "<leader>Y", "gg\"+yG", { desc = "XXX" })
-vim.keymap.set({ 'n', }, "<leader>p", "\"+p", { desc = "XXX" })
-vim.keymap.set({ 'n', }, "<leader>P", "\"+P", { desc = "XXX" })
-vim.keymap.set({ 'v', }, "<leader>p", "\"+p", { desc = "XXX" })
+vim.keymap.set({ 'n', 'v' }, "<leader>y", "\"+y", { desc = "System clipboard [y]ank" })
+vim.keymap.set({ 'n', }, "<leader>Y", "gg\"+yG", { desc = "[Y]ank whole buffer" })
+vim.keymap.set({ 'n', 'v' }, "<leader>p", "\"+p", { desc = "[P]aste from clipboard" })
+vim.keymap.set({ 'n', }, "<leader>P", "\"+P", { desc = "[P]aste before from clipboard" })
 
 -- Moving text
 -- TODO: maybe re-add `=` to take care of indenting

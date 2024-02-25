@@ -1,19 +1,25 @@
 REWRITE
 =======
 
-- [ ] Start with kickstart.nvim
-- [ ] develop on windows to establish cross-platform in the hardest case
+- [x] Start with kickstart.nvim
+- [x] develop on windows to establish cross-platform in the hardest case
 - [ ] decide which plugins that I had I actually want to keep
 - [ ] consider alternatives (like for fugitive and netrw)
 - [ ] Re-evaluate the below todo list
 
-General
-=======
+Todo
+====
 
-- Figure out spelling files once and for all.
+- [ ] Get Harpoon set up and working for my needs
+- [ ] Function to subtract times for my time logs
 
-- Figure out why my insert-mode underline keymap doesn't work on my macbook
-- Some kind of way to mark and move blocks of text
+
+Maybe
+=====
+
+- [ ] Figure out spelling files once and for all.
+
+- [ ] Some kind of way to mark and move blocks of text
     - it would be a lot like `"ay` or `"ad` then `"aP`, but I don't like that
       workflow, because it is a lot of keystrokes and remembering which register
       can be used. Moving also commits to the move, and can sometimes be lost,
@@ -25,24 +31,14 @@ General
         4. `gp` or `gm` copies or moves the stored selection
         5. Nothing happens if 4 is not done.
 
-Note-taking
-===========
+## Note-taking
 
 Create a note-taking plugin using markdown and pandoc
 - [ ] set the :make and :compiler to handle it properly
 - [ ] bring in images and rescale to appropriate sizes
 - [ ] track original location of images and rename approprately
-- [ ] Some helper functions to handle git merges and pushes
-      - I'm using git annex, and full repos on my desktop and laptop, so in
-        order to push to desktop, I need keep my work in a separate branch.
-      - Command: git add [...]; git annex add [...]; git commit; git checkout
-        master; git merge; git push; git checkout writing.
-      - The checking out master, merging, then checking out the writing  branch
-        is annoying.
-      - Maybe something with worktrees?
 
-LaTeX
-=====
+## Latex
 
 I'm starting to see ways that Treesitter + Telescope can help with my latex
 writing. I have started implementing these in the `jladan/nvim-latex` plugin.
