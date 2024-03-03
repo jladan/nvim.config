@@ -22,7 +22,8 @@ Based on Kickstart, but also brought over some keymaps and config from the past 
 
 ### Deprecated
 - overly complicated colorscheme that I made years ago
-    - also provides a lightmode scheme automaticall with `:set bg=light`
+    - also provides a lightmode scheme automatically with `:set bg=light`
+    - deprecated, because it does not play well with new features like some treesitter highlighting
 
 ### Plugins
 
