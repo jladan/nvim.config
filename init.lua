@@ -554,3 +554,6 @@ vim.keymap.set('n', '<leader>tG', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>td', require('telescope.builtin').diagnostics, { desc = '[T]elescope [D]iagnostics' })
 vim.keymap.set('n', '<leader>tr', require('telescope.builtin').resume, { desc = '[T]elescope [R]esume' })
 
+
+-- TODO organize the snippets.
+require("jladan.snips").setup_snippets()
