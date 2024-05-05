@@ -4,6 +4,7 @@ vim.g.codeium_disable_bindings = 1
 -- Remove the `use` here if you're using folke/lazy.nvim.
 return {
     'Exafunction/codeium.vim',
+    enabled = false,
     config = function ()
         -- Change '<C-g>' here to any keycode you like.
         vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
