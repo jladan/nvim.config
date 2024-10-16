@@ -38,10 +38,8 @@ require('lazy').setup({
     'rose-pine/neovim',
 
     --[[ Debugging
-    'mfussenegger/nvim-dap',
-    'rcarriga/nvim-dap-ui',
-    'leoluz/nvim-dap-go',
-    -- use 'nvim-telescoope/telescope-dap.nvim'
+    -- 'leoluz/nvim-dap-go',
+    -- 'nvim-telescoope/telescope-dap.nvim'
 
     -- HTML snippets
     'mattn/emmet-vim',
@@ -137,6 +135,15 @@ require('lazy').setup({
             'nvim-treesitter/nvim-treesitter-textobjects',
         },
         build = ':TSUpdate',
+    },
+    {
+        'nvim-treesitter/nvim-treesitter-context',
+        config = function ()
+            require('treesitter-context').setup()
+            vim.keymap.set("n", "[c", function()
+                require("treesitter-context").go_to_context(vim.v.count1)
+            end, { silent = true })
+        end
     },
 
     -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
@@ -556,3 +563,5 @@ vim.keymap.set('n', '<leader>tr', require('telescope.builtin').resume, { desc = 
 
 -- TODO organize the snippets.
 require("jladan.snips").setup_snippets()
+
+
