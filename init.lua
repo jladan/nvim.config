@@ -3,6 +3,25 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Set treesitter folding only on certain files
+vim.api.nvim_create_augroup('tsfold', {clear = true})
+vim.api.nvim_create_autocmd('BufWinEnter', {
+    pattern = {'*'},
+    callback = function ()
+        vim.wo.foldlevel = 10
+        vim.wo.foldexpr = '0'
+        vim.wo.foldmethod = 'marker'
+    end
+})
+vim.api.nvim_create_autocmd('BufWinEnter', {
+    pattern = {'*.js', '*.ts', '*.lua', '*.py'},
+    callback = function ()
+        vim.wo.foldlevel = 10
+        vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+        vim.wo.foldmethod = 'expr'
+    end
+})
+
 -- Set any OS-specific configuration
 require('jladan').os_config()
 require('jladan').setup_scratch()
@@ -336,10 +355,10 @@ vim.defer_fn(function()
         incremental_selection = {
             enable = true,
             keymaps = {
-                init_selection = '<c-space>',
-                node_incremental = '<c-space>',
-                scope_incremental = '<c-s>',
-                node_decremental = '<M-space>',
+                init_selection = 'grr',
+                node_incremental = 'grr',
+                scope_incremental = 'grc',
+                node_decremental = 'grn',
             },
         },
         textobjects = {
@@ -360,29 +379,33 @@ vim.defer_fn(function()
                 enable = true,
                 set_jumps = true, -- whether to set jumps in the jumplist
                 goto_next_start = {
-                    [']f'] = '@function.outer',
-                    [']]'] = '@class.outer',
+                    [']a'] = '@parameter.inner',
+                    [']]'] = '@function.outer',
+                    [']c'] = '@class.outer',
                 },
                 goto_next_end = {
-                    [']F'] = '@function.outer',
-                    [']['] = '@class.outer',
+                    [']A'] = '@parameter.inner',
+                    [']['] = '@function.outer',
+                    [']C'] = '@class.outer',
                 },
                 goto_previous_start = {
-                    ['[f'] = '@function.outer',
-                    ['[['] = '@class.outer',
+                    ['[a'] = '@parameter.inner',
+                    ['[['] = '@function.outer',
+                    ['[c'] = '@class.outer',
                 },
                 goto_previous_end = {
-                    ['[F'] = '@function.outer',
-                    ['[]'] = '@class.outer',
+                    ['[A'] = '@parameter.inner',
+                    ['[]'] = '@function.outer',
+                    ['[C'] = '@class.outer',
                 },
             },
             swap = {
                 enable = true,
                 swap_next = {
-                    ['<leader>a'] = '@parameter.inner',
+                    ['<leader>ha'] = '@parameter.inner',
                 },
                 swap_previous = {
-                    ['<leader>A'] = '@parameter.inner',
+                    ['<leader>hA'] = '@parameter.inner',
                 },
             },
         },
