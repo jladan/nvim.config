@@ -3,6 +3,14 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Backup settings
+vim.opt.backup = true
+vim.opt.swapfile = true
+
+-- TODO: make this toggle-able
+vim.opt.diffopt:append('iwhiteall')
+-- vim.opt.diffopt:remove('iwhiteall')
+
 -- Set treesitter folding only on certain files
 vim.api.nvim_create_augroup('tsfold', {clear = true})
 vim.api.nvim_create_autocmd('BufWinEnter', {
@@ -381,22 +389,22 @@ vim.defer_fn(function()
                 goto_next_start = {
                     [']a'] = '@parameter.inner',
                     [']]'] = '@function.outer',
-                    [']c'] = '@class.outer',
+                    -- [']c'] = '@class.outer',
                 },
                 goto_next_end = {
                     [']A'] = '@parameter.inner',
                     [']['] = '@function.outer',
-                    [']C'] = '@class.outer',
+                    -- [']C'] = '@class.outer',
                 },
                 goto_previous_start = {
                     ['[a'] = '@parameter.inner',
                     ['[['] = '@function.outer',
-                    ['[c'] = '@class.outer',
+                    -- ['[c'] = '@class.outer',
                 },
                 goto_previous_end = {
                     ['[A'] = '@parameter.inner',
                     ['[]'] = '@function.outer',
-                    ['[C'] = '@class.outer',
+                    -- ['[C'] = '@class.outer',
                 },
             },
             swap = {

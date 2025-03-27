@@ -5,7 +5,20 @@ local M = {}
 function M.os_config()
     -- Set shell on windows
     -- alternatively, use vim.fn.has('macunix'), but cannot find in helpfiles
-    if vim.loop.os_uname().sysname == 'Windows_NT' then
+    if vim.loop.os_uname().sysname == 'Windows_NT (bash)' then
+        -- see :h shell-powershell
+        -- Cannot get temp files to work with bash for some reason
+        vim.cmd 'let $TMP="/tmp"'
+        vim.cmd 'let $TMPDIR="/tmp"'
+        vim.go.shell = "bash.exe"
+        -- vim.go.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'
+        vim.go.shellcmdflag = '-c'
+        vim.go.shellredir = '>%s 2>&1'
+        vim.go.shellpipe  = '2>&1 | tee'
+        vim.go.shellquote=''
+        vim.go.shellxquote=''
+        vim.go.shellxescape=''
+    elseif vim.loop.os_uname().sysname == 'Windows_NT' then
         -- see :h shell-powershell
         vim.go.shell = "powershell.exe"
         -- vim.go.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'

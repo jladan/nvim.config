@@ -57,7 +57,7 @@ vim.keymap.set({ 'n', }, "<leader>Y", "gg\"+yG", { desc = "[Y]ank whole buffer" 
 vim.keymap.set({ 'i', }, "<C-S-C>", '<c-o>"+y', { desc = "System clipboard [y]ank" })
 vim.keymap.set({ 'n', 'v' }, "<leader>p", "\"+p", { desc = "[P]aste from clipboard" })
 vim.keymap.set({ 'n', }, "<leader>P", "\"+P", { desc = "[P]aste before from clipboard" })
-vim.keymap.set({ 'i', }, "<C-S-V>", '<c-o>"+p', { desc = "System clipboard [p]aste" })
+vim.keymap.set({ 'i', }, "<C-S-V>", '<c-r>+', { desc = "System clipboard [p]aste" })
 
 -- Moving text
 -- TODO: maybe re-add `=` to take care of indenting
